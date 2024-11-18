@@ -1,7 +1,6 @@
+
 function MakeProjectile(ThingData, speed)
-	if (ThingData.icon_size == nil) then
-		ThingData.icon_size = 64
-	end
+ThingData.icon_size = ThingData.icon_size or 64
 	local TheProjectile =
 		{
 			type = "stream",
