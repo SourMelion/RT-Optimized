@@ -1,4 +1,4 @@
-local util = require('util')
+local util = require("util")
 
 local accumulator = table.deepcopy(data.raw.accumulator.accumulator)
 
@@ -18,90 +18,109 @@ local function foreach_sprite_definition(sprite, func)
 end
 
 local function scaleSprite(sprite, scale)
-	return foreach_sprite_definition(table.deepcopy(sprite), function (def)
+	return foreach_sprite_definition(table.deepcopy(sprite), function(def)
 		def.scale = def.scale and (def.scale * scale) or scale
 	end)
 end
 
 local function removeShift(sprite)
-	return foreach_sprite_definition(table.deepcopy(sprite), function (def)
+	return foreach_sprite_definition(table.deepcopy(sprite), function(def)
 		def.shift = nil
-	end)	
+	end)
 end
 
 magRampEntities = {
 	{ -- range sprite
 		type = "sprite",
 		name = "RTMagnetTrainRampRange",
-		filename = "__RTOptimized__/graphics/TrainRamp/range.png",
-		size = 64
+		filename = "__RenaiTransportation__/graphics/TrainRamp/range.png",
+		size = 64,
 	},
-	
+
 	{ -- "rail" tile
 		type = "simple-entity-with-owner",
 		name = "RTMagnetRail",
-		icon = "__RTOptimized__/graphics/TrainRamp/magnetrail.png",
+		icon = "__RenaiTransportation__/graphics/TrainRamp/magnetrail.png",
 		icon_size = 16,
-		flags = {"placeable-neutral", "placeable-off-grid", "not-on-map", "not-blueprintable", "not-deconstructable", "not-flammable", "no-copy-paste"},
-		selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
+		flags = {
+			"placeable-neutral",
+			"placeable-off-grid",
+			"not-on-map",
+			"not-blueprintable",
+			"not-deconstructable",
+			"not-flammable",
+			"no-copy-paste",
+		},
+		selection_box = { { -0.5, -0.5 }, { 0.5, 0.5 } },
 		selection_priority = 1,
-		collision_mask = {layers={}},
+		collision_mask = { layers = {} },
 		render_layer = "rail-stone-path",
-		picture =
-			{
-				filename = "__RTOptimized__/graphics/TrainRamp/magnetrail2.png",
-				size = 64,
-				scale = 0.5
-			},
+		picture = {
+			filename = "__RenaiTransportation__/graphics/TrainRamp/magnetrail2.png",
+			size = 64,
+			scale = 0.5,
+		},
 	},
-	
+
 	--[[ { -- "rail" sprite because entities cant have altered render layers
 		type = "sprite",
 		name = "RTMagnetRailSprite",
-		filename = "__RTOptimized__/graphics/TrainRamp/magnetrail2.png",
+		filename = "__RenaiTransportation__/graphics/TrainRamp/magnetrail2.png",
 		size = 64,
 		scale = 0.5
 	}, ]]
-	
+
 	{
 		type = "animation",
 		name = "RTPush",
-		filename = "__RTOptimized__/graphics/TrainRamp/testhue.png",
-		size = {105,169},
+		filename = "__RenaiTransportation__/graphics/TrainRamp/testhue.png",
+		size = { 105, 169 },
 		frame_count = 99,
-		line_length = 3
+		line_length = 3,
 	},
-	
+
 	{
 		type = "animation",
 		name = "RTPull",
-		filename = "__RTOptimized__/graphics/TrainRamp/testhuerev.png",
-		size = {105,169},
+		filename = "__RenaiTransportation__/graphics/TrainRamp/testhuerev.png",
+		size = { 105, 169 },
 		frame_count = 99,
-		line_length = 3
+		line_length = 3,
 	},
-	
+
 	{
 		type = "electric-energy-interface",
 		name = "RTMagnetRampDrain",
-		icon = "__RTOptimized__/graphics/TrainRamp/RTMagnetTrainRamp-icon.png",
+		icon = "__RenaiTransportation__/graphics/TrainRamp/RTMagnetTrainRamp-icon.png",
 		icon_size = 64,
-		flags = {"placeable-neutral", "placeable-off-grid", "not-on-map", "not-blueprintable", "not-deconstructable", "not-flammable", "no-copy-paste"},
-		selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
-		collision_box = {{-0.4, -0.4}, {0.4, 0.4}},
+		flags = {
+			"placeable-neutral",
+			"placeable-off-grid",
+			"not-on-map",
+			"not-blueprintable",
+			"not-deconstructable",
+			"not-flammable",
+			"no-copy-paste",
+		},
+		selection_box = { { -0.5, -0.5 }, { 0.5, 0.5 } },
+		collision_box = { { -0.4, -0.4 }, { 0.4, 0.4 } },
 		selection_priority = 101,
-		collision_mask = {layers={}},
+		collision_mask = { layers = {} },
 		render_layer = "lower-object-above-shadow",
 		energy_source = {
 			type = "electric",
 			usage_priority = "secondary-input",
-			input_flow_limit = "40MW"
+			input_flow_limit = "40MW",
 		},
-		picture = removeShift(scaleSprite(accumulator.chargable_graphics.picture, 0.4)),
-		animation = removeShift(scaleSprite(accumulator.chargable_graphics.charge_animation, 0.4)),
+		picture = removeShift(
+			scaleSprite(accumulator.chargable_graphics.picture, 0.4)
+		),
+		animation = removeShift(
+			scaleSprite(accumulator.chargable_graphics.charge_animation, 0.4)
+		),
 		light = accumulator.charge_light,
-		working_sound = accumulator.working_sound
-	}	
+		working_sound = accumulator.working_sound,
+	},
 }
 
 return magRampEntities

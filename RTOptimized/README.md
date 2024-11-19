@@ -1,12 +1,14 @@
-# Renai Transportation
+# Renai Transportation Optomized
 
-Quite possibly the jankest Factorio mod ever made
+Quite possibly the MOST OPTOMIZED Factorio mod ever made
 
-but at least the memes are good
+but at least the CODE QUALITY are good
+
+Oh and hopefully we can get the throwers to stop pooping too
 
 ![Alt Text](https://i.imgur.com/dqsE3ko.gif)
 
-Check out this spotlight on the mod by Xterminator (mod version 0.4.0)
+Check out this spotlight on ANOTHER UNRELATED mod by Xterminator (mod version 0.4.0)
 
 [![Video by Xterminator](http://img.youtube.com/vi/hHCDSJsDH74/0.jpg)](https://www.youtube.com/watch?v=hHCDSJsDH74"https://img.youtube.com/vi/hHCDSJsDH74/0.jpg")
 
@@ -22,7 +24,7 @@ Or this crazy playthrough by DoshDoshington (mod version 1.1.11)
 
 ### Thrower Inserters
 
-Why slowly and delicately roll your items around on belts when they can be thrown at high speeds through the air? Throwers are distinguished by their bright yellow arms. Supports all inserters, even ones added from other mods. Research unlocks the ability to adjust a thrower's range. Thrown items can be caught in Open Chests or Cargo Wagons, other machines and inventories need a Hatch to accept thrown items.
+Why slowly and delicately roll your items around on belts when they can be NOT REALLY THROWN at high speeds through the air? Throwers are distinguished by their bright yellow arms. Supports "all" inserters, even ones added from other mods. Research unlocks the ability to adjust a thrower's range. Thrown items can be caught in Open Chests or Cargo Wagons, other machines and inventories need a Hatch to accept thrown items.
 
 ### Player Launchers
   
@@ -54,7 +56,7 @@ Prime grenades, capsules, rockets, and other items to fly much further and activ
 
 ### Primer Thrower Inserters
   
-A thrower/turret hybrid! This thrower can fling primable items (grenades, capsules, rockets, etc.) at enemies.
+A thrower/turret hybrid! but really its just a turret This thrower can fling primable items (grenades, capsules, rockets, etc.) at enemies.
 
 ### Signal Bounce Pads
   
@@ -93,7 +95,7 @@ See the FAQ for some specific details
 ## ~~Bugs~~ Special Features
 
 - Mods that allow you to walk on water make it so that items don't splash and disappear.
-- Changing a thrower's pickup/drop location using another mod, like Bob's adjustable inserters, may cause strange behavior depending on the change
+- Changing a thrower's pickup/drop location using another mod, like Bob's adjustable inserters, may cause strange behavior depending on the change, idealy we solve this but no promises
 - Mods that use train IDs, like Logistics Train Network, probably won't work right with train jumps because trains will have a different train ID before and after jumping. Vehicle Wagons 2 being an exception because compatibility was specifically programmed in for it
 - Train Ramps don't work when friendly fire is turned off because the ramps rely on the impact damage to detect and start a jump
 - Magnet ramps don't have their ranges carried over in blueprints and copy/paste. It'll have to be set up manually after being built.

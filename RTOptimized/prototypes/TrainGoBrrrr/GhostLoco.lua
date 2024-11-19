@@ -1,12 +1,18 @@
-local baseLoco = data.raw['locomotive']['locomotive']
+local baseLoco = data.raw["locomotive"]["locomotive"]
 
-data:extend{
+data:extend({
 	{
 		type = "locomotive",
 		name = "RT-ghostLocomotive",
 		icon = baseLoco.icon,
-		icon_size = 64, icon_mipmaps = 4,
-		flags = {"placeable-neutral", "placeable-off-grid", "not-on-map",  "not-selectable-in-game"},
+		icon_size = 64,
+		icon_mipmaps = 4,
+		flags = {
+			"placeable-neutral",
+			"placeable-off-grid",
+			"not-on-map",
+			"not-selectable-in-game",
+		},
 		hidden = true,
 		collision_box = baseLoco.collision_box,
 		max_health = 1,
@@ -19,19 +25,20 @@ data:extend{
 		air_resistance = 0.000000000001, -- this is a percentage of current speed that will be subtracted
 		connection_distance = 3,
 		joint_distance = 4,
-		energy_source = {type = "void"},
+		energy_source = { type = "void" },
 		vertical_selection_shift = -0.5,
 		energy_per_hit_point = 0,
 		pictures = {
 			rotated = {
-				layers ={
-				{
-					direction_count = 1,
-					filename = "__core__/graphics/empty.png",
-					width = 1,
-					height = 1
-				}}
-			}
-		}
-	}
-}
+				layers = {
+					{
+						direction_count = 1,
+						filename = "__core__/graphics/empty.png",
+						width = 1,
+						height = 1,
+					},
+				},
+			},
+		},
+	},
+})
