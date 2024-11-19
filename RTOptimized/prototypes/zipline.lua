@@ -40,7 +40,7 @@ brrr.working_sound = {
 	sound = {
 		{
 			--filename = "__base__/sound/transport-belt-working.ogg",
-			filename = "__RenaiTransportation__/sickw0bs/zapline.ogg",
+			filename = "__RenaiTransportation__/sound/zapline.ogg",
 			volume = 0.35,
 		},
 	},

@@ -643,8 +643,7 @@ function MakeCarriageSprites(ThingData)
 											* #SpriteSet.filenames
 											* SpriteSet.line_length
 											* SpriteSet.lines_per_file
-										)
-										% (SpriteSet.line_length * SpriteSet.lines_per_file)
+										) % (SpriteSet.line_length * SpriteSet.lines_per_file)
 									) / SpriteSet.line_length
 								),
 							size = { SpriteSet.width, SpriteSet.height },
@@ -673,8 +672,7 @@ function MakeCarriageSprites(ThingData)
 											* #SpriteSet.filenames
 											* SpriteSet.line_length
 											* SpriteSet.lines_per_file
-										)
-										% (SpriteSet.line_length * SpriteSet.lines_per_file)
+										) % (SpriteSet.line_length * SpriteSet.lines_per_file)
 									) / SpriteSet.line_length
 								),
 							size = { SpriteSet.width, SpriteSet.height },
@@ -703,8 +701,7 @@ function MakeCarriageSprites(ThingData)
 											* #SpriteSet.filenames
 											* SpriteSet.line_length
 											* SpriteSet.lines_per_file
-										)
-										% (SpriteSet.line_length * SpriteSet.lines_per_file)
+										) % (SpriteSet.line_length * SpriteSet.lines_per_file)
 									) / SpriteSet.line_length
 								),
 							size = { SpriteSet.width, SpriteSet.height },
@@ -746,8 +743,7 @@ function MakeCarriageSprites(ThingData)
 											* #SpriteSet.filenames
 											* SpriteSet.line_length
 											* SpriteSet.lines_per_file
-										)
-										% (SpriteSet.line_length * SpriteSet.lines_per_file)
+										) % (SpriteSet.line_length * SpriteSet.lines_per_file)
 									) / SpriteSet.line_length
 								),
 							size = { SpriteSet.width, SpriteSet.height },
@@ -788,8 +784,7 @@ function MakeCarriageSprites(ThingData)
 											* #SpriteSet.filenames
 											* SpriteSet.line_length
 											* SpriteSet.lines_per_file
-										)
-										% (SpriteSet.line_length * SpriteSet.lines_per_file)
+										) % (SpriteSet.line_length * SpriteSet.lines_per_file)
 									) / SpriteSet.line_length
 								),
 							size = { SpriteSet.width, SpriteSet.height },
@@ -842,8 +837,7 @@ function MakeCarriageSprites(ThingData)
 											* #SpriteSet.filenames
 											* SpriteSet.line_length
 											* SpriteSet.lines_per_file
-										)
-										% (SpriteSet.line_length * SpriteSet.lines_per_file)
+										) % (SpriteSet.line_length * SpriteSet.lines_per_file)
 									) / SpriteSet.line_length
 								),
 							size = { SpriteSet.width, SpriteSet.height },
@@ -872,8 +866,7 @@ function MakeCarriageSprites(ThingData)
 											* #SpriteSet.filenames
 											* SpriteSet.line_length
 											* SpriteSet.lines_per_file
-										)
-										% (SpriteSet.line_length * SpriteSet.lines_per_file)
+										) % (SpriteSet.line_length * SpriteSet.lines_per_file)
 									) / SpriteSet.line_length
 								),
 							size = { SpriteSet.width, SpriteSet.height },
@@ -902,8 +895,7 @@ function MakeCarriageSprites(ThingData)
 											* #SpriteSet.filenames
 											* SpriteSet.line_length
 											* SpriteSet.lines_per_file
-										)
-										% (SpriteSet.line_length * SpriteSet.lines_per_file)
+										) % (SpriteSet.line_length * SpriteSet.lines_per_file)
 									) / SpriteSet.line_length
 								),
 							size = { SpriteSet.width, SpriteSet.height },
@@ -945,8 +937,7 @@ function MakeCarriageSprites(ThingData)
 											* #SpriteSet.filenames
 											* SpriteSet.line_length
 											* SpriteSet.lines_per_file
-										)
-										% (SpriteSet.line_length * SpriteSet.lines_per_file)
+										) % (SpriteSet.line_length * SpriteSet.lines_per_file)
 									) / SpriteSet.line_length
 								),
 							size = { SpriteSet.width, SpriteSet.height },
@@ -987,8 +978,7 @@ function MakeCarriageSprites(ThingData)
 											* #SpriteSet.filenames
 											* SpriteSet.line_length
 											* SpriteSet.lines_per_file
-										)
-										% (SpriteSet.line_length * SpriteSet.lines_per_file)
+										) % (SpriteSet.line_length * SpriteSet.lines_per_file)
 									) / SpriteSet.line_length
 								),
 							size = { SpriteSet.width, SpriteSet.height },
