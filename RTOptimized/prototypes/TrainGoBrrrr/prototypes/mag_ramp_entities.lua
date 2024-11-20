@@ -33,14 +33,14 @@ magRampEntities = {
 	{ -- range sprite
 		type = "sprite",
 		name = "RTMagnetTrainRampRange",
-		filename = "__RenaiTransportation__/graphics/TrainRamp/range.png",
+		filename = "__RTOptimized__/graphics/TrainRamp/range.png",
 		size = 64,
 	},
 
 	{ -- "rail" tile
 		type = "simple-entity-with-owner",
 		name = "RTMagnetRail",
-		icon = "__RenaiTransportation__/graphics/TrainRamp/magnetrail.png",
+		icon = "__RTOptimized__/graphics/TrainRamp/magnetrail.png",
 		icon_size = 16,
 		flags = {
 			"placeable-neutral",
@@ -56,7 +56,7 @@ magRampEntities = {
 		collision_mask = { layers = {} },
 		render_layer = "rail-stone-path",
 		picture = {
-			filename = "__RenaiTransportation__/graphics/TrainRamp/magnetrail2.png",
+			filename = "__RTOptimized__/graphics/TrainRamp/magnetrail2.png",
 			size = 64,
 			scale = 0.5,
 		},
@@ -65,7 +65,7 @@ magRampEntities = {
 	--[[ { -- "rail" sprite because entities cant have altered render layers
 		type = "sprite",
 		name = "RTMagnetRailSprite",
-		filename = "__RenaiTransportation__/graphics/TrainRamp/magnetrail2.png",
+		filename = "__RTOptimized__/graphics/TrainRamp/magnetrail2.png",
 		size = 64,
 		scale = 0.5
 	}, ]]
@@ -73,7 +73,7 @@ magRampEntities = {
 	{
 		type = "animation",
 		name = "RTPush",
-		filename = "__RenaiTransportation__/graphics/TrainRamp/testhue.png",
+		filename = "__RTOptimized__/graphics/TrainRamp/testhue.png",
 		size = { 105, 169 },
 		frame_count = 99,
 		line_length = 3,
@@ -82,7 +82,7 @@ magRampEntities = {
 	{
 		type = "animation",
 		name = "RTPull",
-		filename = "__RenaiTransportation__/graphics/TrainRamp/testhuerev.png",
+		filename = "__RTOptimized__/graphics/TrainRamp/testhuerev.png",
 		size = { 105, 169 },
 		frame_count = 99,
 		line_length = 3,
@@ -91,7 +91,7 @@ magRampEntities = {
 	{
 		type = "electric-energy-interface",
 		name = "RTMagnetRampDrain",
-		icon = "__RenaiTransportation__/graphics/TrainRamp/RTMagnetTrainRamp-icon.png",
+		icon = "__RTOptimized__/graphics/TrainRamp/RTMagnetTrainRamp-icon.png",
 		icon_size = 64,
 		flags = {
 			"placeable-neutral",

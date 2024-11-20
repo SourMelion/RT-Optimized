@@ -333,7 +333,7 @@ local function on_tick(event)
 						end
 					end
 
-				-- non-tracers falling on something
+					-- non-tracers falling on something
 				elseif FlyingItem.tracing == nil then
 					-- players falling on something
 					if FlyingItem.player then
@@ -362,7 +362,7 @@ local function on_tick(event)
 							)
 							ThingLandedOn.die()
 						end
-					-- items falling on something
+						-- items falling on something
 					else
 						if
 							ThingLandedOn.name == "OpenContainer"
@@ -377,10 +377,7 @@ local function on_tick(event)
 							elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
 								CubeFlyingItems.release_and_insert(FlyingItem, ThingLandedOn)
 							else
-								ThingLandedOn.insert({
-									name = FlyingItem.item,
-									count = FlyingItem.amount,
-								})
+								ThingLandedOn.insert({ name = FlyingItem.item, count = FlyingItem.amount })
 							end
 							ThingLandedOn.surface.play_sound({
 								path = "RTClunk",
@@ -388,12 +385,15 @@ local function on_tick(event)
 								volume_modifier = 0.9,
 							})
 
-						---- If the thing it landed on has an inventory and a hatch, insert the item ----
+							---- If the thing it landed on has an inventory and a hatch, insert the item ----
 						elseif
-							ThingLandedOn.surface.find_entity("HatchRT", {
-								math.floor(FlyingItem.target.x) + 0.5,
-								math.floor(FlyingItem.target.y) + 0.5,
-							}) and ThingLandedOn.can_insert({ name = FlyingItem.item })
+							ThingLandedOn.surface.find_entity(
+								"HatchRT",
+								{
+									math.floor(FlyingItem.target.x) + 0.5,
+									math.floor(FlyingItem.target.y) + 0.5,
+								}
+							) and ThingLandedOn.can_insert({ name = FlyingItem.item })
 						then
 							if FlyingItem.CloudStorage then
 								ThingLandedOn.insert(FlyingItem.CloudStorage[1])
@@ -401,10 +401,7 @@ local function on_tick(event)
 							elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
 								CubeFlyingItems.release_and_insert(FlyingItem, ThingLandedOn)
 							else
-								ThingLandedOn.insert({
-									name = FlyingItem.item,
-									count = FlyingItem.amount,
-								})
+								ThingLandedOn.insert({ name = FlyingItem.item, count = FlyingItem.amount })
 							end
 							ThingLandedOn.surface.play_sound({
 								path = "RTClunk",
@@ -412,7 +409,7 @@ local function on_tick(event)
 								volume_modifier = 0.7,
 							})
 
-						---- If it landed on something but there's also a cargo wagon there
+							---- If it landed on something but there's also a cargo wagon there
 						elseif
 							LandedOnCargoWagon ~= nil
 							and LandedOnCargoWagon.can_insert({ name = FlyingItem.item })
@@ -429,11 +426,11 @@ local function on_tick(event)
 								})
 							end
 
-						-- If it's an Ultracube FlyingItem, just spill it near whatever it landed on, potentially onto a belt
+							-- If it's an Ultracube FlyingItem, just spill it near whatever it landed on, potentially onto a belt
 						elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
 							CubeFlyingItems.release_and_spill(FlyingItem, ThingLandedOn)
 
-						---- otherwise it bounces off whatever it landed on and lands as an item on the nearest empty space within 10 tiles. destroyed if no space ----
+							---- otherwise it bounces off whatever it landed on and lands as an item on the nearest empty space within 10 tiles. destroyed if no space ----
 						else
 							if FlyingItem.CloudStorage then -- for things with data/tags or whatever, should only ever be 1 in stack
 								if ThingLandedOn.type == "transport-belt" then
@@ -499,7 +496,7 @@ local function on_tick(event)
 							end
 						end
 					end
-				-- tracers falling on something
+					-- tracers falling on something
 				else
 					if storage.CatapultList[FlyingItem.tracing] then
 						if LandedOnCargoWagon then
@@ -550,7 +547,7 @@ local function on_tick(event)
 					end
 				end
 
-			-- didn't land on anything
+				-- didn't land on anything
 			elseif FlyingItem.tracing == nil then -- thrown items
 				local ProjectileSurface = FlyingItem.surface
 				if
@@ -706,7 +703,7 @@ local function on_tick(event)
 					end
 				end
 
-			-- tracer
+				-- tracer
 			elseif
 				FlyingItem.tracing ~= nil and storage.CatapultList[FlyingItem.tracing]
 			then

@@ -3,16 +3,16 @@ if settings.startup["RTThrowersSetting"].value == true then
 		{
 			type = "technology",
 			name = "se-no",
-			icon = "__RenaiTransportation__/graphics/tech/start.png",
+			icon = "__RTOptimized__/graphics/tech/start.png",
 			icon_size = 128,
 			effects = {
 				{
 					type = "unlock-recipe",
-					recipe = "DirectedBouncePlateRecipie",
+					recipe = "DirectedBouncePlateRecipe",
 				},
 				{
 					type = "unlock-recipe",
-					recipe = "PlayerLauncherRecipie",
+					recipe = "PlayerLauncherRecipe",
 				},
 			},
 			unit = {
@@ -26,7 +26,7 @@ if settings.startup["RTThrowersSetting"].value == true then
 		{
 			type = "technology",
 			name = "RTFocusedFlinging",
-			icon = "__RenaiTransportation__/graphics/tech/focus.png",
+			icon = "__RTOptimized__/graphics/tech/focus.png",
 			icon_size = 128,
 			effects = {
 				{
@@ -36,7 +36,7 @@ if settings.startup["RTThrowersSetting"].value == true then
 				{
 					type = "nothing",
 					effect_description = "Thrower Range can be set by this signal",
-					icon = "__RenaiTransportation__/graphics/RangeSignaling.png",
+					icon = "__RTOptimized__/graphics/RangeSignaling.png",
 					icon_size = 64,
 				},
 			},
@@ -53,7 +53,7 @@ if settings.startup["RTThrowersSetting"].value == true then
 		{
 			type = "technology",
 			name = "HatchRTTech",
-			icon = "__RenaiTransportation__/graphics/hatch/icon.png",
+			icon = "__RTOptimized__/graphics/hatch/icon.png",
 			icon_size = 64,
 			effects = {
 				{
@@ -73,7 +73,7 @@ if settings.startup["RTThrowersSetting"].value == true then
 		{
 			type = "technology",
 			name = "EjectorHatchRTTech",
-			icon = "__RenaiTransportation__/graphics/hatch/EjeectorIccon.png",
+			icon = "__RTOptimized__/graphics/hatch/EjeectorIccon.png",
 			icon_size = 43,
 			effects = {
 				{
@@ -98,7 +98,7 @@ if settings.startup["RTThrowersSetting"].value == true then
 		{
 			type = "technology",
 			name = "RTThrowerTime",
-			icon = "__RenaiTransportation__/graphics/tech/ThrowerTech.png",
+			icon = "__RTOptimized__/graphics/tech/ThrowerTech.png",
 			icon_size = 128,
 			effects = {},
 			prerequisites = { "se-no", "logistic-science-pack" },
@@ -114,12 +114,12 @@ if settings.startup["RTThrowersSetting"].value == true then
 		{
 			type = "technology",
 			name = "RTSimonSays",
-			icon = "__RenaiTransportation__/graphics/BouncePlates/DirectorBouncePlate/DirectorPlateIcon.png",
+			icon = "__RTOptimized__/graphics/BouncePlates/DirectorBouncePlate/DirectorPlateIcon.png",
 			icon_size = 64,
 			effects = {
 				{
 					type = "unlock-recipe",
-					recipe = "DirectorBouncePlateRecipie",
+					recipe = "DirectorBouncePlateRecipe",
 				},
 			},
 			prerequisites = { "se-no", "advanced-circuit" },
@@ -138,7 +138,7 @@ else
 		{
 			type = "technology",
 			name = "se-no",
-			icon = "__RenaiTransportation__/graphics/tech/start.png",
+			icon = "__RTOptimized__/graphics/tech/start.png",
 			icon_size = 128,
 			effects = {},
 			unit = {
@@ -160,12 +160,12 @@ then
 		{
 			type = "technology",
 			name = "PrimerPlateTech",
-			icon = "__RenaiTransportation__/graphics/BouncePlates/PrimerBouncePlate/PrimerPlateIconn.png",
+			icon = "__RTOptimized__/graphics/BouncePlates/PrimerBouncePlate/PrimerPlateIconn.png",
 			icon_size = 64,
 			effects = {
 				{
 					type = "unlock-recipe",
-					recipe = "PrimerBouncePlateRecipie",
+					recipe = "PrimerBouncePlateRecipe",
 				},
 			},
 			prerequisites = { "se-no", "military-2" },
@@ -181,13 +181,13 @@ then
 		--[[ {
    		type = "technology",
    		name = "SignalPlateTech",
-   		icon = "__RenaiTransportation__/graphics/BouncePlates/SignalBouncePlate/SignalPlateIconn.png",
+   		icon = "__RTOptimized__/graphics/BouncePlates/SignalBouncePlate/SignalPlateIconn.png",
    		icon_size = 64,
    		effects =
    		{
    			{
    				type = "unlock-recipe",
-   				recipe = "SignalBouncePlateRecipie"
+   				recipe = "SignalBouncePlateRecipe"
    			}
    		},
    		prerequisites = {"se-no", "circuit-network"},
@@ -205,7 +205,7 @@ then
 		{
 			type = "technology",
 			name = "PrimerThrowerTech",
-			icon = "__RenaiTransportation__/graphics/tech/PrimerThrower.png",
+			icon = "__RTOptimized__/graphics/tech/PrimerThrower.png",
 			icon_size = 128,
 			effects = {
 				{
@@ -236,7 +236,7 @@ then
 			{
 				type = "technology",
 				name = "RTDeliverThePayload",
-				icon = "__RenaiTransportation__/graphics/tech/boom.png",
+				icon = "__RTOptimized__/graphics/tech/boom.png",
 				icon_size = 128,
 				effects = {
 					{
@@ -270,7 +270,7 @@ if settings.startup["RTTrainRampSetting"].value == true then
 		{
 			type = "technology",
 			name = "RTFlyingFreight",
-			icon = "__RenaiTransportation__/graphics/tech/FlyingFreight.png",
+			icon = "__RTOptimized__/graphics/tech/FlyingFreight.png",
 			icon_size = 128,
 			effects = {
 				{
@@ -291,7 +291,7 @@ if settings.startup["RTTrainRampSetting"].value == true then
 		{
 			type = "technology",
 			name = "RTMagnetTrainRamps",
-			icon = "__RenaiTransportation__/graphics/tech/MagnetFreight.png",
+			icon = "__RTOptimized__/graphics/tech/MagnetFreight.png",
 			icon_size = 128,
 			effects = {
 				{
@@ -321,7 +321,7 @@ if settings.startup["RTTrainRampSetting"].value == true then
 			{
 				type = "technology",
 				name = "RTImpactTech",
-				icon = "__RenaiTransportation__/graphics/tech/Impact.png",
+				icon = "__RTOptimized__/graphics/tech/Impact.png",
 				icon_size = 128,
 				effects = {
 					{
@@ -354,16 +354,16 @@ if settings.startup["RTTrainRampSetting"].value == true then
 			{
 				type = "technology",
 				name = "RTFreightPlates",
-				icon = "__RenaiTransportation__/graphics/tech/FlyingFreightPlate.png",
+				icon = "__RTOptimized__/graphics/tech/FlyingFreightPlate.png",
 				icon_size = 128,
 				effects = {
 					{
 						type = "unlock-recipe",
-						recipe = "RTTrainBouncePlateRecipie",
+						recipe = "RTTrainBouncePlateRecipe",
 					},
 					{
 						type = "unlock-recipe",
-						recipe = "RTTrainDirectedBouncePlateRecipie",
+						recipe = "RTTrainDirectedBouncePlateRecipe",
 					},
 				},
 				prerequisites = { "RTFlyingFreight" },
@@ -385,7 +385,7 @@ if settings.startup["RTZiplineSetting"].value == true then
 		{
 			type = "technology",
 			name = "RTZiplineTech",
-			icon = "__RenaiTransportation__/graphics/zipline/icon.png",
+			icon = "__RTOptimized__/graphics/zipline/icon.png",
 			icon_size = 64,
 			effects = {
 				{
@@ -410,7 +410,7 @@ if settings.startup["RTZiplineSetting"].value == true then
 		{
 			type = "technology",
 			name = "RTZiplineControlTech1",
-			icon = "__RenaiTransportation__/graphics/zipline/crankcontrols.png",
+			icon = "__RTOptimized__/graphics/zipline/crankcontrols.png",
 			icon_size = 64,
 			effects = {
 				{
@@ -431,7 +431,7 @@ if settings.startup["RTZiplineSetting"].value == true then
 		{
 			type = "technology",
 			name = "RTProgrammableZiplineControlTech",
-			icon = "__RenaiTransportation__/graphics/zipline/terminaltech.png",
+			icon = "__RTOptimized__/graphics/zipline/terminaltech.png",
 			icon_size = 128,
 			effects = {
 				{
@@ -463,7 +463,7 @@ if settings.startup["RTZiplineSetting"].value == true then
 			name = "RTZiplineTech2",
 			icons = {
 				{
-					icon = "__RenaiTransportation__/graphics/zipline/icon.png",
+					icon = "__RTOptimized__/graphics/zipline/icon.png",
 					icon_size = 64,
 					tint = { 1, 0.9, 0 },
 				},
@@ -490,7 +490,7 @@ if settings.startup["RTZiplineSetting"].value == true then
 			name = "RTZiplineTech3",
 			icons = {
 				{
-					icon = "__RenaiTransportation__/graphics/zipline/icon.png",
+					icon = "__RTOptimized__/graphics/zipline/icon.png",
 					icon_size = 64,
 					tint = { 255, 35, 35 },
 				},
@@ -518,7 +518,7 @@ if settings.startup["RTZiplineSetting"].value == true then
 			name = "RTZiplineTech4",
 			icons = {
 				{
-					icon = "__RenaiTransportation__/graphics/zipline/icon.png",
+					icon = "__RTOptimized__/graphics/zipline/icon.png",
 					icon_size = 64,
 					tint = { 18, 201, 233 },
 				},
@@ -546,7 +546,7 @@ if settings.startup["RTZiplineSetting"].value == true then
 			name = "RTZiplineTech5",
 			icons = {
 				{
-					icon = "__RenaiTransportation__/graphics/zipline/icon.png",
+					icon = "__RTOptimized__/graphics/zipline/icon.png",
 					icon_size = 64,
 					tint = { 83, 255, 26 },
 				},

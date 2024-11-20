@@ -1,5 +1,5 @@
 local nothing = {
-	filename = "__RenaiTransportation__/graphics/nothing.png",
+	filename = "__RTOptimized__/graphics/nothing.png",
 	width = 1,
 	height = 1,
 }
@@ -16,7 +16,7 @@ data:extend({
 	{
 		type = "simple-entity-with-owner",
 		name = "HatchRT",
-		icon = "__RenaiTransportation__/graphics/hatch/icon.png",
+		icon = "__RTOptimized__/graphics/hatch/icon.png",
 		icon_size = 16,
 		flags = { "placeable-neutral", "player-creation", "not-rotatable" },
 		collision_mask = { layers = { [RememberNoUnderscores] = true } },
@@ -26,7 +26,7 @@ data:extend({
 		minable = { mining_time = 0.2, result = "HatchRTItem" },
 		render_layer = "arrow",
 		picture = {
-			filename = "__RenaiTransportation__/graphics/hatch/hatch.png",
+			filename = "__RTOptimized__/graphics/hatch/hatch.png",
 			width = 28,
 			height = 42,
 			scale = 0.75,
@@ -36,7 +36,7 @@ data:extend({
 	{ --------- The hatch item -------------
 		type = "item",
 		name = "HatchRTItem",
-		icon = "__RenaiTransportation__/graphics/hatch/icon.png",
+		icon = "__RTOptimized__/graphics/hatch/icon.png",
 		icon_size = 64, --icon_mipmaps = 4,
 		subgroup = "RT",
 		order = "f",
@@ -62,7 +62,7 @@ data:extend({
 	{
 		type = "inserter",
 		name = "RTThrower-EjectorHatchRT",
-		icon = "__RenaiTransportation__/graphics/hatch/EjeectorIccon.png",
+		icon = "__RTOptimized__/graphics/hatch/EjeectorIccon.png",
 		icon_size = 43,
 		flags = { "placeable-neutral", "player-creation" },
 		collision_mask = { layers = { [RememberNoUnderscores] = true } },
@@ -91,7 +91,7 @@ data:extend({
 		hand_closed_picture = nothing,
 		platform_picture = {
 			sheet = {
-				filename = "__RenaiTransportation__/graphics/hatch/EjectorHatch.png",
+				filename = "__RTOptimized__/graphics/hatch/EjectorHatch.png",
 				priority = "extra-high",
 				width = 64,
 				height = 64,
@@ -107,7 +107,7 @@ data:extend({
 	{ --------- The ejector hatch item -------------
 		type = "item",
 		name = "RTThrower-EjectorHatchRTItem",
-		icon = "__RenaiTransportation__/graphics/hatch/EjeectorIccon.png",
+		icon = "__RTOptimized__/graphics/hatch/EjeectorIccon.png",
 		icon_size = 43, --icon_mipmaps = 4,
 		subgroup = "RT",
 		order = "f",
@@ -133,7 +133,7 @@ data:extend({
 	{
 		type = "animation",
 		name = "EjectorHatchFrames",
-		filename = "__RenaiTransportation__/graphics/hatch/EjectorHatch.png",
+		filename = "__RTOptimized__/graphics/hatch/EjectorHatch.png",
 		size = 64,
 		frame_count = 4,
 		line_length = 4,
@@ -145,7 +145,7 @@ data:extend({
 {
 	type = "inserter",
 	name = "RTThrower-FilterEjectorHatchRT",
-	icon = "__RenaiTransportation__/graphics/hatch/FilterEjeectorIccon.png",
+	icon = "__RTOptimized__/graphics/hatch/FilterEjeectorIccon.png",
 	icon_size = 43,
 	flags = {"placeable-neutral", "player-creation"},
 	collision_mask = {layers={[RememberNoUnderscores]=true}},
@@ -177,7 +177,7 @@ data:extend({
 	{
 		sheet =
 		{
-			filename = "__RenaiTransportation__/graphics/hatch/FilterEjectorHatch.png",
+			filename = "__RTOptimized__/graphics/hatch/FilterEjectorHatch.png",
 			priority = "extra-high",
 			width = 64,
 			height = 64,
@@ -193,7 +193,7 @@ data:extend({
 { --------- The ejector hatch item -------------
 	type = "item",
 	name = "RTThrower-FilterEjectorHatchRTItem",
-	icon = "__RenaiTransportation__/graphics/hatch/FilterEjeectorIccon.png",
+	icon = "__RTOptimized__/graphics/hatch/FilterEjeectorIccon.png",
 	icon_size = 43, --icon_mipmaps = 4,
 	subgroup = "RT",
 	order = "f",
@@ -219,7 +219,7 @@ data:extend({
 {
 	type = "animation",
 	name = "FilterEjectorHatchFrames",
-	filename = "__RenaiTransportation__/graphics/hatch/FilterEjectorHatch.png",
+	filename = "__RTOptimized__/graphics/hatch/FilterEjectorHatch.png",
 	size = 64,
 	frame_count = 4,
 	line_length = 4,

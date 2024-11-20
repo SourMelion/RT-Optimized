@@ -24,7 +24,7 @@ MLG.light.intensity = 0
 MLG.light.size = 0
 MLG.turret_animation = nil
 MLG.animation = {
-	filename = "__RenaiTransportation__/graphics/nothing.png",
+	filename = "__RTOptimized__/graphics/nothing.png",
 	size = 32,
 	direction_count = 1,
 }
@@ -43,7 +43,7 @@ data:extend({
 	{ --------- prop item -------------
 		type = "item",
 		name = "RTPropCarItem",
-		icon = "__RenaiTransportation__/graphics/Untitled.png",
+		icon = "__RTOptimized__/graphics/Untitled.png",
 		icon_size = 32,
 		hidden = true,
 		subgroup = "RT",

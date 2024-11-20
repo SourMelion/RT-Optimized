@@ -68,7 +68,7 @@ data:extend({
 	-- { --------- impact unloader item ----------
 	-- 	type = "item",
 	-- 	name = "RTImpactUnloaderItem",
-	-- 	icon = '__RenaiTransportation__/graphics/TrainRamp/RTImpactUnloader-icon.png',
+	-- 	icon = '__RTOptimized__/graphics/TrainRamp/RTImpactUnloader-icon.png',
 	-- 	icon_size = 64,
 	-- 	subgroup = "RT",
 	-- 	order = "g",

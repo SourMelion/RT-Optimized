@@ -24,14 +24,14 @@ fi
 }
 
 ##RUNTIME
-if [ -z "$1" ]
-	then
+if [ -z "$1" ]; then
 	helpText
 fi
 findString=$1
-if [ -z "$2" ]
-	then
-	helpText
+if [ "$2" != "" ]; then	##gotta allow replace with empty
+	if [ -z "$2" ]; then
+		helpText
+	fi
 fi
 replaceString=$2
 

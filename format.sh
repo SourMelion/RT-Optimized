@@ -7,5 +7,5 @@ if ! test -f "./bin/stylua"; then
 	cargo install --root . stylua --features lua52
 fi
 
-./bin/stylua --respect-ignores --verbose ./**/*.lua
+./bin/stylua --syntax lua52 --respect-ignores --verbose ./**/*.lua
 ##--respect-ignores to respect ignores in .styluaignore, factorios lua is a bit modified shit happens

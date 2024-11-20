@@ -14,7 +14,7 @@ data:extend({
 	{ --------- Bounce plate entity --------------
 		type = "constant-combinator",
 		name = "SignalBouncePlate",
-		icon = "__RenaiTransportation__/graphics/BouncePlates/SignalBouncePlate/SignalPlateIconn.png",
+		icon = "__RTOptimized__/graphics/BouncePlates/SignalBouncePlate/SignalPlateIconn.png",
 		icon_size = 64,
 		flags = { "placeable-neutral", "player-creation" },
 		minable = { mining_time = 0.2, result = "SignalBouncePlateItem" },
@@ -27,7 +27,7 @@ data:extend({
 		sprites = {
 			layers = {
 				{
-					filename = "__RenaiTransportation__/graphics/BouncePlates/BouncePlate/shadow.png",
+					filename = "__RTOptimized__/graphics/BouncePlates/BouncePlate/shadow.png",
 					priority = "medium",
 					width = 66,
 					height = 76,
@@ -35,7 +35,7 @@ data:extend({
 					scale = 0.5,
 				},
 				{
-					filename = "__RenaiTransportation__/graphics/BouncePlates/SignalBouncePlate/SignalPlate.png",
+					filename = "__RTOptimized__/graphics/BouncePlates/SignalBouncePlate/SignalPlate.png",
 					priority = "medium",
 					width = 66,
 					height = 76,
@@ -45,7 +45,7 @@ data:extend({
 			},
 		},
 		activity_led_sprites = {
-			filename = "__RenaiTransportation__/graphics/nothing.png",
+			filename = "__RTOptimized__/graphics/nothing.png",
 			priority = "medium",
 			width = 32,
 			height = 32,
@@ -66,7 +66,7 @@ data:extend({
 		},
 		radius_visualisation_specification = {
 			sprite = {
-				filename = "__RenaiTransportation__/graphics/testalt.png",
+				filename = "__RTOptimized__/graphics/testalt.png",
 				size = 640,
 			},
 			draw_on_selection = true,
@@ -77,7 +77,7 @@ data:extend({
 	{ --------- The Bounce plate item -------------
 		type = "item",
 		name = "SignalBouncePlateItem",
-		icon = "__RenaiTransportation__/graphics/BouncePlates/SignalBouncePlate/SignalPlateIconn.png",
+		icon = "__RTOptimized__/graphics/BouncePlates/SignalBouncePlate/SignalPlateIconn.png",
 		icon_size = 64, --icon_mipmaps = 4,
 		subgroup = "RT",
 		order = "a-c",
@@ -87,7 +87,7 @@ data:extend({
 
 	{ --------- The Bounce plate recipie ----------
 		type = "recipe",
-		name = "SignalBouncePlateRecipie",
+		name = "SignalBouncePlateRecipe",
 		enabled = false,
 		energy_required = 1,
 		ingredients = {
@@ -105,7 +105,7 @@ data:extend({
 		life_time = 8,
 		render_layer = "higher-object-above",
 		pictures = {
-			filename = "__RenaiTransportation__/graphics/BouncePlates/SignalBouncePlate/SignalParticle.png",
+			filename = "__RTOptimized__/graphics/BouncePlates/SignalBouncePlate/SignalParticle.png",
 			--width = 64,
 			--height = 64,
 			size = 32,

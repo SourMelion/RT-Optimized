@@ -34,7 +34,7 @@ data:extend({
 		graphics_set = {},
 		folded_animation = {
 			direction_count = 4,
-			filename = "__RenaiTransportation__/graphics/nothing.png",
+			filename = "__RTOptimized__/graphics/nothing.png",
 			size = 1,
 		},
 		starting_attack_speed = 0.5,

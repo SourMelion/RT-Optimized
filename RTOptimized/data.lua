@@ -65,13 +65,13 @@ data:extend({
 	{
 		type = "sprite",
 		name = "RTBlank",
-		filename = "__RenaiTransportation__/graphics/nothing.png",
+		filename = "__RTOptimized__/graphics/nothing.png",
 		size = 1,
 	},
 	{
 		type = "animation",
 		name = "RTMOREPOWER",
-		filename = "__RenaiTransportation__/graphics/NoPowerBlink.png",
+		filename = "__RTOptimized__/graphics/NoPowerBlink.png",
 		size = { 64, 64 },
 		frame_count = 2,
 		line_length = 2,
@@ -80,7 +80,7 @@ data:extend({
 	{
 		type = "animation",
 		name = "RTHoojinTime",
-		filename = "__RenaiTransportation__/graphics/TrainRamp/trains/base/WatchHimHooj.png",
+		filename = "__RTOptimized__/graphics/TrainRamp/trains/base/WatchHimHooj.png",
 		size = { 128, 222 },
 		frame_count = 7,
 		line_length = 7,
@@ -93,7 +93,7 @@ data:extend({
 		duration_in_ticks = math.floor(60 * 28.13),
 		working_sound = {
 			sound = {
-				filename = "__RenaiTransportation__/graphics/TrainRamp/trains/base/Crank dat Hooja Boi.ogg",
+				filename = "__RTOptimized__/graphics/TrainRamp/trains/base/Crank dat Hooja Boi.ogg",
 				volume = 0.5,
 			},
 			use_doppler_shift = false,
@@ -108,7 +108,7 @@ data:extend({
 	{
 		type = "virtual-signal",
 		name = "ThrowerRangeSignal",
-		icon = "__RenaiTransportation__/graphics/RangeSignaling.png",
+		icon = "__RTOptimized__/graphics/RangeSignaling.png",
 		icon_size = 64,
 	},
 	{
@@ -122,7 +122,7 @@ data:extend({
 		particle = {
 			layers = {
 				{
-					filename = "__RenaiTransportation__/graphics/icon.png",
+					filename = "__RTOptimized__/graphics/icon.png",
 					line_length = 1,
 					frame_count = 1,
 					priority = "high",
@@ -134,7 +134,7 @@ data:extend({
 		shadow = {
 			layers = {
 				{
-					filename = "__RenaiTransportation__/graphics/icon.png",
+					filename = "__RTOptimized__/graphics/icon.png",
 					line_length = 1,
 					frame_count = 1,
 					priority = "high",
@@ -157,7 +157,7 @@ data:extend({
 		particle = {
 			layers = {
 				{
-					filename = "__RenaiTransportation__/graphics/icon.png",
+					filename = "__RTOptimized__/graphics/icon.png",
 					line_length = 1,
 					frame_count = 1,
 					priority = "high",
@@ -169,7 +169,7 @@ data:extend({
 		shadow = {
 			layers = {
 				{
-					filename = "__RenaiTransportation__/graphics/icon.png",
+					filename = "__RTOptimized__/graphics/icon.png",
 					line_length = 1,
 					frame_count = 1,
 					priority = "high",
@@ -192,7 +192,7 @@ data:extend({
 		particle = {
 			layers = {
 				{
-					filename = "__RenaiTransportation__/graphics/icon.png",
+					filename = "__RTOptimized__/graphics/icon.png",
 					line_length = 1,
 					frame_count = 1,
 					priority = "high",
@@ -204,7 +204,7 @@ data:extend({
 		shadow = {
 			layers = {
 				{
-					filename = "__RenaiTransportation__/graphics/icon.png",
+					filename = "__RTOptimized__/graphics/icon.png",
 					line_length = 1,
 					frame_count = 1,
 					priority = "high",

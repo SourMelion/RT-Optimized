@@ -1,5 +1,5 @@
 local TheItem = table.deepcopy(data.raw.item.inserter)
-TheItem.icon = "__RenaiTransportation__/graphics/primerthrowericon.png"
+TheItem.icon = "__RTOptimized__/graphics/primerthrowericon.png"
 TheItem.name = "RTThrower-PrimerThrower-Item"
 TheItem.subgroup = "defensive-structure"
 TheItem.order = "b-a-b"
@@ -31,7 +31,7 @@ TheThrower.rotation_speed = 0.018
 
 TheThrower.radius_visualisation_specification = {
 	sprite = {
-		filename = "__RenaiTransportation__/graphics/PrimerThrower.png",
+		filename = "__RTOptimized__/graphics/PrimerThrower.png",
 		size = 570,
 	},
 	draw_on_selection = true,
@@ -45,7 +45,7 @@ end
 local HandTint = { r = 0.9, g = 0.4, b = 0.5, a = 1 }
 TheThrower.hand_size = 0
 TheThrower.hand_base_picture = {
-	filename = "__RenaiTransportation__/graphics/ThrowerInserter/hr-inserter-hand-base.png",
+	filename = "__RTOptimized__/graphics/ThrowerInserter/hr-inserter-hand-base.png",
 	priority = "extra-high",
 	width = 32,
 	height = 136,
@@ -53,7 +53,7 @@ TheThrower.hand_base_picture = {
 	tint = HandTint,
 }
 TheThrower.hand_closed_picture = {
-	filename = "__RenaiTransportation__/graphics/ThrowerInserter/hr-inserter-hand-closed.png",
+	filename = "__RTOptimized__/graphics/ThrowerInserter/hr-inserter-hand-closed.png",
 	priority = "extra-high",
 	width = 72,
 	height = 164,
@@ -61,7 +61,7 @@ TheThrower.hand_closed_picture = {
 	tint = HandTint,
 }
 TheThrower.hand_open_picture = {
-	filename = "__RenaiTransportation__/graphics/ThrowerInserter/hr-inserter-hand-open.png",
+	filename = "__RTOptimized__/graphics/ThrowerInserter/hr-inserter-hand-open.png",
 	priority = "extra-high",
 	width = 72,
 	height = 164,

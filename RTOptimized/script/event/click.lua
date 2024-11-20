@@ -1,5 +1,4 @@
-local magnetRamps =
-	require("__RenaiTransportation__/script/trains/magnet_ramps")
+local magnetRamps = require("__RTOptimized__/script/trains/magnet_ramps")
 
 local function click(event)
 	--| Toggle range overlay in alt-view

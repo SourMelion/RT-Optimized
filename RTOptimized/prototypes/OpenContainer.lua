@@ -1,9 +1,9 @@
 -------------Open Container Entity ---------------------
 local datboi = table.deepcopy(data.raw.container["iron-chest"])
 datboi.name = "OpenContainer"
-datboi.icon = "__RenaiTransportation__/graphics/OpenContainer/icon.png"
+datboi.icon = "__RTOptimized__/graphics/OpenContainer/icon.png"
 datboi.picture = {
-	filename = "__RenaiTransportation__/graphics/OpenContainer/hrOpenContainer.png",
+	filename = "__RTOptimized__/graphics/OpenContainer/hrOpenContainer.png",
 	priority = "extra-high",
 	width = 66,
 	height = 76,
@@ -18,7 +18,7 @@ data:extend({
 	{ --------- The container item -------------
 		type = "item",
 		name = "OpenContainerItem",
-		icon = "__RenaiTransportation__/graphics/OpenContainer/icon.png",
+		icon = "__RTOptimized__/graphics/OpenContainer/icon.png",
 		icon_size = 64,
 		icon_mipmaps = 4,
 		subgroup = "RT",
@@ -29,7 +29,7 @@ data:extend({
 
 	{ --------- The container recipie ----------
 		type = "recipe",
-		name = "OpenContainerRecipie",
+		name = "OpenContainerRecipe",
 		enabled = true,
 		energy_required = 0.5,
 		ingredients = { { type = "item", name = "iron-chest", amount = 1 } },
@@ -40,7 +40,7 @@ data:extend({
 
 	{ --------- open to regular chest recipie ----------
 		type = "recipe",
-		name = "OpenContainerRevertRecipie",
+		name = "OpenContainerRevertRecipe",
 		enabled = true,
 		energy_required = 0.5,
 		ingredients = { { type = "item", name = "OpenContainerItem", amount = 1 } },

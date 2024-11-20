@@ -261,10 +261,7 @@ function ShowDirectorGUI(player, DirectorPad)
 				type = "choose-elem-button",
 				elem_type = "item",
 				item = ItemName,
-				tags = {
-					section = section,
-					slot = i,
-				},
+				tags = { section = section, slot = i },
 			})
 		end
 	end

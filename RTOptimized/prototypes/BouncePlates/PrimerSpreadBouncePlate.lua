@@ -3,7 +3,7 @@ data:extend({
 	{ --------- Bounce plate entity --------------
 		type = "simple-entity-with-owner",
 		name = "PrimerBouncePlate",
-		icon = "__RenaiTransportation__/graphics/BouncePlates/PrimerBouncePlate/PrimerPlateIconn.png",
+		icon = "__RTOptimized__/graphics/BouncePlates/PrimerBouncePlate/PrimerPlateIconn.png",
 		icon_size = 64,
 		flags = { "placeable-neutral", "player-creation" },
 		minable = { mining_time = 0.2, result = "PrimerBouncePlateItem" },
@@ -12,7 +12,7 @@ data:extend({
 		selection_box = { { -0.5, -0.5 }, { 0.5, 0.5 } },
 		fast_replaceable_group = "bouncers",
 		picture = {
-			filename = "__RenaiTransportation__/graphics/BouncePlates/PrimerBouncePlate/PrimerPlate.png",
+			filename = "__RTOptimized__/graphics/BouncePlates/PrimerBouncePlate/PrimerPlate.png",
 			priority = "medium",
 			width = 66,
 			height = 76,
@@ -21,7 +21,7 @@ data:extend({
 		},
 		radius_visualisation_specification = {
 			sprite = {
-				filename = "__RenaiTransportation__/graphics/PrimeRange.png",
+				filename = "__RTOptimized__/graphics/PrimeRange.png",
 				size = 640,
 			},
 			draw_on_selection = true,
@@ -32,7 +32,7 @@ data:extend({
 	{ --------- The Bounce plate item -------------
 		type = "item",
 		name = "PrimerBouncePlateItem",
-		icon = "__RenaiTransportation__/graphics/BouncePlates/PrimerBouncePlate/PrimerPlateIconn.png",
+		icon = "__RTOptimized__/graphics/BouncePlates/PrimerBouncePlate/PrimerPlateIconn.png",
 		icon_size = 64, --icon_mipmaps = 4,
 		subgroup = "RT",
 		order = "a-b",
@@ -42,7 +42,7 @@ data:extend({
 
 	{ --------- The Bounce plate recipie ----------
 		type = "recipe",
-		name = "PrimerBouncePlateRecipie",
+		name = "PrimerBouncePlateRecipe",
 		enabled = false,
 		energy_required = 1,
 		ingredients = {
@@ -60,7 +60,7 @@ data:extend({
 		name = "PrimerBouncePlateParticle",
 		life_time = 8,
 		pictures = {
-			filename = "__RenaiTransportation__/graphics/BouncePlates/PrimerBouncePlate/PrimerParticle.png",
+			filename = "__RTOptimized__/graphics/BouncePlates/PrimerBouncePlate/PrimerParticle.png",
 			--width = 64,
 			--height = 64,
 			size = 32,
@@ -75,5 +75,5 @@ data:extend({
 ------ Adds the fast thrower to appropriate research -------
 table.insert(
 	data.raw["technology"]["military-2"].effects,
-	{ type = "unlock-recipe", recipe = "PrimerBouncePlateRecipie" }
+	{ type = "unlock-recipe", recipe = "PrimerBouncePlateRecipe" }
 )

@@ -6,10 +6,10 @@ data:extend({
 		audible_distance_modifier = 0.5,
 		variations = {
 			{
-				filename = "__RenaiTransportation__/sound/a.ogg",
+				filename = "__RTOptimized__/sound/a.ogg",
 			},
 			{
-				filename = "__RenaiTransportation__/sound/b.ogg",
+				filename = "__RTOptimized__/sound/b.ogg",
 				volume = 0.7,
 			},
 		},
@@ -26,19 +26,19 @@ data:extend({
 		audible_distance_modifier = 0.5,
 		variations = {
 			{
-				filename = "__RenaiTransportation__/sound/throw1.ogg",
+				filename = "__RTOptimized__/sound/throw1.ogg",
 			},
 			{
-				filename = "__RenaiTransportation__/sound/throw2.ogg",
+				filename = "__RTOptimized__/sound/throw2.ogg",
 			},
 			{
-				filename = "__RenaiTransportation__/sound/throw3.ogg",
+				filename = "__RTOptimized__/sound/throw3.ogg",
 			},
 			{
-				filename = "__RenaiTransportation__/sound/throw4.ogg",
+				filename = "__RTOptimized__/sound/throw4.ogg",
 			},
 			{
-				filename = "__RenaiTransportation__/sound/throw5.ogg",
+				filename = "__RTOptimized__/sound/throw5.ogg",
 			},
 		},
 	},
@@ -50,23 +50,23 @@ data:extend({
 		allow_random_repeat = true,
 		variations = {
 			{
-				filename = "__RenaiTransportation__/sound/clunk1.ogg",
+				filename = "__RTOptimized__/sound/clunk1.ogg",
 				volume = 0.5,
 			},
 			{
-				filename = "__RenaiTransportation__/sound/clunk2.ogg",
+				filename = "__RTOptimized__/sound/clunk2.ogg",
 				volume = 0.5,
 			},
 			{
-				filename = "__RenaiTransportation__/sound/clunk3.ogg",
+				filename = "__RTOptimized__/sound/clunk3.ogg",
 				volume = 0.5,
 			},
 			{
-				filename = "__RenaiTransportation__/sound/clunk4.ogg",
+				filename = "__RTOptimized__/sound/clunk4.ogg",
 				volume = 0.5,
 			},
 			{
-				filename = "__RenaiTransportation__/sound/clunk5.ogg",
+				filename = "__RTOptimized__/sound/clunk5.ogg",
 				volume = 0.5,
 			},
 		},
@@ -75,7 +75,7 @@ data:extend({
 	{
 		type = "sound",
 		name = "RTEjector",
-		filename = "__RenaiTransportation__/sound/cannon.ogg",
+		filename = "__RTOptimized__/sound/cannon.ogg",
 		audible_distance_modifier = 0.65,
 		volume = 1,
 	},
@@ -83,7 +83,7 @@ data:extend({
 	{
 		type = "sound",
 		name = "PrimeClick",
-		filename = "__RenaiTransportation__/sound/click.ogg",
+		filename = "__RTOptimized__/sound/click.ogg",
 		audible_distance_modifier = 0.5,
 		volume = 0.75,
 		aggregation = {

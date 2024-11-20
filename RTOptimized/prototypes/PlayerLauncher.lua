@@ -1,7 +1,7 @@
 ------ the thrower entity ----------
 local PikachuFace = table.deepcopy(data.raw.inserter["inserter"])
 PikachuFace.name = "PlayerLauncher"
-PikachuFace.icon = "__RenaiTransportation__/graphics/PlayerLauncher/icon.png"
+PikachuFace.icon = "__RTOptimized__/graphics/PlayerLauncher/icon.png"
 PikachuFace.icon_size = 32
 PikachuFace.icon_mipmaps = 4
 PikachuFace.minable = { mining_time = 0.2, result = "PlayerLauncherItem" }
@@ -18,7 +18,7 @@ PikachuFace.fast_replaceable_group = nil
 PikachuFace.next_upgrade = nil
 PikachuFace.energy_source = { type = "void" }
 nothing = {
-	filename = "__RenaiTransportation__/graphics/nothing.png",
+	filename = "__RTOptimized__/graphics/nothing.png",
 	priority = "extra-high",
 	width = 32,
 	height = 32,
@@ -31,7 +31,7 @@ PikachuFace.hand_base_shadow = nothing
 PikachuFace.hand_closed_shadow = nothing
 PikachuFace.hand_open_shadow = nothing
 PikachuFace.platform_picture.sheet = {
-	filename = "__RenaiTransportation__/graphics/PlayerLauncher/PlayerLauncher.png",
+	filename = "__RTOptimized__/graphics/PlayerLauncher/PlayerLauncher.png",
 	priority = "extra-high",
 	width = 105,
 	height = 79,
@@ -39,7 +39,7 @@ PikachuFace.platform_picture.sheet = {
 	scale = 0.5,
 	--[[ 			hr_version =
 			{
-				filename = "__RenaiTransportation__/graphics/PlayerLauncher/PlayerLauncher.png",
+				filename = "__RTOptimized__/graphics/PlayerLauncher/PlayerLauncher.png",
 				priority = "extra-high",
 				width = 105,
 				height = 79,
@@ -52,7 +52,7 @@ data:extend({
 	{ --------- The thrower item -------------
 		type = "item",
 		name = "PlayerLauncherItem",
-		icon = "__RenaiTransportation__/graphics/PlayerLauncher/icon.png",
+		icon = "__RTOptimized__/graphics/PlayerLauncher/icon.png",
 		icon_size = 32,
 		icon_mipmaps = 4,
 		subgroup = "RT",
@@ -63,7 +63,7 @@ data:extend({
 
 	{ --------- The thrower recipie ----------
 		type = "recipe",
-		name = "PlayerLauncherRecipie",
+		name = "PlayerLauncherRecipe",
 		enabled = false,
 		energy_required = 0.5,
 		ingredients = {
@@ -80,7 +80,7 @@ data:extend({
 		name = "PlayerLauncherParticle",
 		life_time = 8,
 		pictures = {
-			filename = "__RenaiTransportation__/graphics/BouncePlates/BouncePlate/Particle.png",
+			filename = "__RTOptimized__/graphics/BouncePlates/BouncePlate/Particle.png",
 			--width = 64,
 			--height = 64,
 			size = 32,

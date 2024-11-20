@@ -1,6 +1,6 @@
 local util = require("util")
 
-local constants = require("__RenaiTransportation__/script/trains/constants")
+local constants = require("__RTOptimized__/script/trains/constants")
 
 local function makeRampItem(name, icon, placerEntity)
 	return {
@@ -361,13 +361,13 @@ local function makeRampEntity(name, icon, pictureFileName, placerItem)
 end
 
 local function makeRampPrototypes(baseName)
-	local iconFilename = "__RenaiTransportation__/graphics/TrainRamp/"
+	local iconFilename = "__RTOptimized__/graphics/TrainRamp/"
 		.. baseName
 		.. "-icon.png"
-	local entityPictureFilename = "__RenaiTransportation__/graphics/TrainRamp/"
+	local entityPictureFilename = "__RTOptimized__/graphics/TrainRamp/"
 		.. baseName
 		.. ".png"
-	local noSkipEntityPictureFilename = "__RenaiTransportation__/graphics/TrainRamp/"
+	local noSkipEntityPictureFilename = "__RTOptimized__/graphics/TrainRamp/"
 		.. baseName
 		.. "NoSkip.png"
 	local itemName = baseName .. "Item"

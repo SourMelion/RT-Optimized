@@ -87,6 +87,11 @@ function SwapToGhost(player)
 	OG.get_inventory(defines.inventory.character_armor).clear()
 	OG.get_inventory(defines.inventory.character_trash).clear()
 	NEWHOST.cursor_stack.transfer_stack(OG.cursor_stack)
+	--[[ for i = 1, OG.request_slot_count do
+      local thing = OG.get_personal_logistic_slot(i)
+      NEWHOST.set_personal_logistic_slot(i, thing)
+      OG.clear_personal_logistic_slot(i)
+   end ]]
 	---------- redo crafting queue -----------
 	if TheList ~= nil then
 		for i = #TheList, 1, -1 do
@@ -112,10 +117,7 @@ function SwapToGhost(player)
 		end
 	end
 	---------- swap control -----------------
-	player.set_controller({
-		type = defines.controllers.character,
-		character = NEWHOST,
-	})
+	player.set_controller({ type = defines.controllers.character, character = NEWHOST })
 	if remote.interfaces.jetpack and remote.interfaces.jetpack.block_jetpack then
 		remote.call("jetpack", "block_jetpack", { character = NEWHOST })
 	end
@@ -147,7 +149,6 @@ function SwapBackFromGhost(player, FlyingItem)
 			FlyingItem.player.character = FlyingItem.SwapBack
 			FlyingItem.SwapBack.direction = OG2.direction
 			------ undo crafting queue -------
-
 			local TheList = nil
 			if OG2.crafting_queue then
 				TheList = {}
@@ -158,7 +159,6 @@ function SwapBackFromGhost(player, FlyingItem)
 					end
 				end
 			end
-
 			------ swap inventories ---------
 			util.swap_entity_inventories(
 				OG2,
@@ -188,7 +188,11 @@ function SwapBackFromGhost(player, FlyingItem)
 			player.character.cursor_stack.transfer_stack(OG2.cursor_stack)
 			FlyingItem.SwapBack.character_inventory_slots_bonus = FlyingItem.SwapBack.character_inventory_slots_bonus
 				- 10000
-
+			--[[ for i = 1, OG2.request_slot_count do
+            local thing = OG2.get_personal_logistic_slot(i)
+            FlyingItem.SwapBack.set_personal_logistic_slot(i, thing)
+            OG2.clear_personal_logistic_slot(i)
+         end ]]
 			---------- redo crafting queue -----------
 			if TheList ~= nil then
 				for i = #TheList, 1, -1 do
@@ -199,7 +203,6 @@ function SwapBackFromGhost(player, FlyingItem)
 					end
 				end
 			end
-
 			---------- move robot ownership ----------
 			for each, bot in pairs(OG2.following_robots) do
 				bot.combat_robot_owner = FlyingItem.SwapBack
@@ -355,7 +358,7 @@ function copy(object)
 	local function _copy(object)
 		if type(object) ~= "table" then
 			return object
-		-- don't copy factorio rich objects
+			-- don't copy factorio rich objects
 		elseif object.__self then
 			return object
 		elseif lookup_table[object] then
@@ -471,10 +474,7 @@ function GetOnZipline(player, PlayerProperties, pole)
 	trolley.destructible = false
 	SpookySlideGhost.destructible = false
 	drain.destructible = false
-	TheGuy.teleport({
-		SpookySlideGhost.position.x,
-		2 + SpookySlideGhost.position.y,
-	})
+	TheGuy.teleport({ SpookySlideGhost.position.x, 2 + SpookySlideGhost.position.y })
 	trolley.teleport({
 		SpookySlideGhost.position.x,
 		0.5 + SpookySlideGhost.position.y,

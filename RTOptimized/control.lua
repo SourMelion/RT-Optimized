@@ -315,6 +315,12 @@ script.on_nth_tick(3, function(event)
 								)
 								start = catapult.position
 								speed = 0.25
+								--[[ catapult.surface.play_sound
+								{
+									path = "RTEjector",
+									position = catapult.position,
+									volume_modifier = 0.1
+								} ]]
 							else
 								catapult.surface.play_sound({
 									path = "RTThrow",

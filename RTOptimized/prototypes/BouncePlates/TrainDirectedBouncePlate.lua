@@ -14,7 +14,7 @@ data:extend({
 	{ --------- Bounce plate entity --------------
 		type = "simple-entity-with-owner",
 		name = "RTTrainDirectedBouncePlate",
-		icon = "__RenaiTransportation__/graphics/BouncePlates/TrainBouncePlate/DirectedTrainPlate.png",
+		icon = "__RTOptimized__/graphics/BouncePlates/TrainBouncePlate/DirectedTrainPlate.png",
 		icon_size = 64,
 		flags = { "placeable-neutral", "player-creation" },
 		minable = { mining_time = 0.5, result = "RTTrainDirectedBouncePlateItem" },
@@ -25,7 +25,7 @@ data:extend({
 		picture = {
 			sheets = {
 				{
-					filename = "__RenaiTransportation__/graphics/BouncePlates/DirectedBouncePlate/DirectedPlateShadow.png",
+					filename = "__RTOptimized__/graphics/BouncePlates/DirectedBouncePlate/DirectedPlateShadow.png",
 					priority = "medium",
 					width = 64,
 					height = 64,
@@ -33,7 +33,7 @@ data:extend({
 					scale = 2,
 				},
 				{
-					filename = "__RenaiTransportation__/graphics/BouncePlates/DirectedBouncePlate/DirectedPlate.png",
+					filename = "__RTOptimized__/graphics/BouncePlates/DirectedBouncePlate/DirectedPlate.png",
 					priority = "medium",
 					width = 64,
 					height = 64,
@@ -43,7 +43,7 @@ data:extend({
 		},
 		radius_visualisation_specification = {
 			sprite = {
-				filename = "__RenaiTransportation__/graphics/test2.png",
+				filename = "__RTOptimized__/graphics/test2.png",
 				size = 640,
 			},
 			draw_on_selection = true,
@@ -54,7 +54,7 @@ data:extend({
 	{ --------- The Bounce plate item -------------
 		type = "item",
 		name = "RTTrainDirectedBouncePlateItem",
-		icon = "__RenaiTransportation__/graphics/BouncePlates/TrainBouncePlate/DirectedTrainPlate.png",
+		icon = "__RTOptimized__/graphics/BouncePlates/TrainBouncePlate/DirectedTrainPlate.png",
 		icon_size = 64, --icon_mipmaps = 4,
 		subgroup = "RT",
 		order = "i-a",
@@ -64,7 +64,7 @@ data:extend({
 
 	{ --------- The Bounce plate recipie ----------
 		type = "recipe",
-		name = "RTTrainDirectedBouncePlateRecipie",
+		name = "RTTrainDirectedBouncePlateRecipe",
 		enabled = false,
 		energy_required = 1,
 		ingredients = {

@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.3
+Date: 20/November/2024
+  changes:
+	- minor restructuring
+	- from now on this changelog shuld probly only list player relevant information
+	- fixed thrower inserter name shenanigans
+---------------------------------------------------------------------------------------------------
 Version: 0.0.2
 Date: 19/November/2024
   changes:

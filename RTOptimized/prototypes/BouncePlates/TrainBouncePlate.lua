@@ -3,7 +3,7 @@ data:extend({
 	{ --------- Bounce plate entity --------------
 		type = "simple-entity-with-owner",
 		name = "RTTrainBouncePlate",
-		icon = "__RenaiTransportation__/graphics/BouncePlates/TrainBouncePlate/TrainPlate.png",
+		icon = "__RTOptimized__/graphics/BouncePlates/TrainBouncePlate/TrainPlate.png",
 		icon_size = 64,
 		flags = { "placeable-neutral", "player-creation" },
 		minable = { mining_time = 0.5, result = "RTTrainBouncePlateItem" },
@@ -14,7 +14,7 @@ data:extend({
 		picture = {
 			layers = {
 				{
-					filename = "__RenaiTransportation__/graphics/BouncePlates/BouncePlate/shadow.png",
+					filename = "__RTOptimized__/graphics/BouncePlates/BouncePlate/shadow.png",
 					priority = "medium",
 					width = 66,
 					height = 76,
@@ -22,7 +22,7 @@ data:extend({
 					scale = 2,
 				},
 				{
-					filename = "__RenaiTransportation__/graphics/BouncePlates/BouncePlate/Plate.png",
+					filename = "__RTOptimized__/graphics/BouncePlates/BouncePlate/Plate.png",
 					priority = "medium",
 					width = 66,
 					height = 76,
@@ -33,7 +33,7 @@ data:extend({
 		},
 		radius_visualisation_specification = {
 			sprite = {
-				filename = "__RenaiTransportation__/graphics/test2.png",
+				filename = "__RTOptimized__/graphics/test2.png",
 				size = 640,
 			},
 			draw_on_selection = true,
@@ -44,7 +44,7 @@ data:extend({
 	{ --------- The Bounce plate item -------------
 		type = "item",
 		name = "RTTrainBouncePlateItem",
-		icon = "__RenaiTransportation__/graphics/BouncePlates/TrainBouncePlate/TrainPlate.png",
+		icon = "__RTOptimized__/graphics/BouncePlates/TrainBouncePlate/TrainPlate.png",
 		icon_size = 64, --icon_mipmaps = 4,
 		subgroup = "RT",
 		order = "i",
@@ -54,7 +54,7 @@ data:extend({
 
 	{ --------- The Bounce plate recipie ----------
 		type = "recipe",
-		name = "RTTrainBouncePlateRecipie",
+		name = "RTTrainBouncePlateRecipe",
 		enabled = false,
 		energy_required = 1,
 		ingredients = {
@@ -73,7 +73,7 @@ data:extend({
 		life_time = 16,
 		render_layer = "higher-object-above",
 		pictures = {
-			filename = "__RenaiTransportation__/graphics/BouncePlates/BouncePlate/Particle.png",
+			filename = "__RTOptimized__/graphics/BouncePlates/BouncePlate/Particle.png",
 			--width = 64,
 			--height = 64,
 			size = 32,
