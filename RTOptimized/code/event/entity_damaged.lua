@@ -619,8 +619,10 @@ local function entity_damaged(event)
 									amount = GroupSize,
 									quality = ItemQuality,
 									target = { x = x, y = y },
-									start = { x = wagon.position.x + random1, y = wagon.position.y
-										+ random2 },
+									start = {
+										x = wagon.position.x + random1,
+										y = wagon.position.y + random2,
+									},
 									AirTime = AirTime,
 									StartTick = game.tick,
 									LandTick = game.tick + AirTime,
@@ -734,8 +736,10 @@ local function entity_damaged(event)
 									amount = GroupSize,
 									quality = ItemQuality,
 									target = { x = x, y = y },
-									start = { x = wagon.position.x + random1, y = wagon.position.y
-										+ random2 },
+									start = {
+										x = wagon.position.x + random1,
+										y = wagon.position.y + random2,
+									},
 									AirTime = AirTime,
 									StartTick = game.tick,
 									LandTick = game.tick + AirTime,

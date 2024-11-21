@@ -136,18 +136,6 @@ local function on_int()
 	storage.FlightNumber = 1
 	storage.FlyingItems = {}
 
-	--[[ 	if (game.surfaces["RTStasisRealm"] == nil) then
-		game.create_surface("RTStasisRealm",
-		{
-			peaceful_mode = true,
-			water = "none",
-			starting_area = "none",
-			autoplace_controls = {},
-			default_enable_all_autoplace_controls = false,
-			cliff_settings = {name = "cliff", cliff_elevation_0 = 0, richness = 0}
-		})
-	end ]]
-
 	storage.ThrowerPaths = {}
 
 	storage.clock = {}

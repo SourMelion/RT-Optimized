@@ -1,3 +1,13 @@
+--TO_DO
+
+--REQUIRE
+
+--FUNCTIONS
+
+--EVENTS
+
+--RUNTIME
+
 if script.active_mods["gvv"] then
 	require("__gvv__.gvv")()
 end
@@ -312,15 +322,9 @@ script.on_nth_tick(3, function(event)
 							then
 								distance = math.sqrt(
 									(x - catapult.position.x) ^ 2 + (y - catapult.position.y) ^ 2
-								)
+								) --this is one hella expensive operation --OPTOMIZE-math-1
 								start = catapult.position
 								speed = 0.25
-								--[[ catapult.surface.play_sound
-								{
-									path = "RTEjector",
-									position = catapult.position,
-									volume_modifier = 0.1
-								} ]]
 							else
 								catapult.surface.play_sound({
 									path = "RTThrow",
@@ -423,8 +427,9 @@ script.on_nth_tick(3, function(event)
 										target = catapult.held_stack_position,
 										surface = catapult.surface,
 									})
-								storage.FlyingItems[storage.FlightNumber].spin = math.random(-10, 10)
-									* 0.01
+								storage.FlyingItems[storage.FlightNumber].spin = 1
+								--storage.FlyingItems[storage.FlightNumber].spin = math.random(-10, 10)
+								--	* 0.01
 							end
 							if catapult.held_stack.item_number ~= nil then
 								local CloudStorage = game.create_inventory(1)
@@ -488,7 +493,6 @@ script.on_nth_tick(3, function(event)
 		end
 	end
 end)
-
 -- Projectile Lands
 -- When a projectile lands and its effect_id is triggered, what to do ----
 script.on_event(
@@ -794,6 +798,7 @@ script.on_event(defines.events.on_gui_elem_changed, function(event)
 	end
 end)
 
+--factorissimo
 ElectricPoleBlackList = {
 	PoleName = "windows",
 	["factory-power-connection"] = true,

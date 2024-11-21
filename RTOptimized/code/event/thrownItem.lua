@@ -1,9 +1,9 @@
 if script.active_mods["Ultracube"] then
-	CubeFlyingItems = require("code.ultracube.cube_flying_items")
+	CubethrownItem = require("code.ultracube.cube_flying_items")
 end
 
 local function on_tick(event)
-	for each, FlyingItem in pairs(storage.FlyingItems) do
+	for each, FlyingItem in pairs(storage.thrownItem) do
 		local clear = true
 
 		if FlyingItem.sprite and event.tick < FlyingItem.LandTick then -- for now only impact unloader items have sprites and need animating like this
@@ -20,7 +20,7 @@ local function on_tick(event)
 			end
 
 			if storage.Ultracube and FlyingItem.cube_token_id then
-				CubeFlyingItems.item_with_sprite_update(FlyingItem, duration)
+				CubethrownItem.item_with_sprite_update(FlyingItem, duration)
 			end
 		elseif event.tick == FlyingItem.LandTick and FlyingItem.space == false then
 			--game.print(each);	--DEBUG
@@ -271,7 +271,7 @@ local function on_tick(event)
 
 								-- (If applicable) Update Ultracube ownership token to keep its timeout set to just after each bounce
 								if storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-									CubeFlyingItems.bounce_update(FlyingItem)
+									CubethrownItem.bounce_update(FlyingItem)
 								end
 							else -- the player does have a vector
 								FlyingItem.vector = {
@@ -375,7 +375,7 @@ local function on_tick(event)
 								ThingLandedOn.insert(FlyingItem.CloudStorage[1])
 								FlyingItem.CloudStorage.destroy()
 							elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-								CubeFlyingItems.release_and_insert(FlyingItem, ThingLandedOn)
+								CubethrownItem.release_and_insert(FlyingItem, ThingLandedOn)
 							else
 								ThingLandedOn.insert({
 									name = FlyingItem.item,
@@ -399,7 +399,7 @@ local function on_tick(event)
 								ThingLandedOn.insert(FlyingItem.CloudStorage[1])
 								FlyingItem.CloudStorage.destroy()
 							elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-								CubeFlyingItems.release_and_insert(FlyingItem, ThingLandedOn)
+								CubethrownItem.release_and_insert(FlyingItem, ThingLandedOn)
 							else
 								ThingLandedOn.insert({
 									name = FlyingItem.item,
@@ -421,7 +421,7 @@ local function on_tick(event)
 								LandedOnCargoWagon.insert(FlyingItem.CloudStorage[1])
 								FlyingItem.CloudStorage.destroy()
 							elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-								CubeFlyingItems.release_and_insert(FlyingItem, LandedOnCargoWagon)
+								CubethrownItem.release_and_insert(FlyingItem, LandedOnCargoWagon)
 							else
 								LandedOnCargoWagon.insert({
 									name = FlyingItem.item,
@@ -431,7 +431,7 @@ local function on_tick(event)
 
 							-- If it's an Ultracube FlyingItem, just spill it near whatever it landed on, potentially onto a belt
 						elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-							CubeFlyingItems.release_and_spill(FlyingItem, ThingLandedOn)
+							CubethrownItem.release_and_spill(FlyingItem, ThingLandedOn)
 
 							---- otherwise it bounces off whatever it landed on and lands as an item on the nearest empty space within 10 tiles. destroyed if no space ----
 						else
@@ -592,7 +592,7 @@ local function on_tick(event)
 								raise_built = true,
 							})
 						elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-							CubeFlyingItems.panic(FlyingItem) -- Purposefully resort to Ultracube forced recovery
+							CubethrownItem.panic(FlyingItem) -- Purposefully resort to Ultracube forced recovery
 						else
 							ProjectileSurface.pollute(FlyingItem.target, FlyingItem.amount * 0.5)
 						end
@@ -654,7 +654,7 @@ local function on_tick(event)
 								raise_built = true,
 							})
 						elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-							CubeFlyingItems.panic(FlyingItem) -- Purposefully resort to Ultracube forced recovery
+							CubethrownItem.panic(FlyingItem) -- Purposefully resort to Ultracube forced recovery
 						else
 							ProjectileSurface.pollute(FlyingItem.target, FlyingItem.amount * 0.5)
 						end
@@ -682,7 +682,7 @@ local function on_tick(event)
 							end
 							FlyingItem.CloudStorage.destroy()
 						elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-							CubeFlyingItems.release_and_spill(FlyingItem)
+							CubethrownItem.release_and_spill(FlyingItem)
 						else
 							local spilt = ProjectileSurface.spill_item_stack({
 								position = ProjectileSurface.find_non_colliding_position(
@@ -737,7 +737,7 @@ local function on_tick(event)
 				if FlyingItem.shadow then -- from impact unloader
 					FlyingItem.shadow.destroy()
 				end
-				storage.FlyingItems[each] = nil
+				storage.thrownItem[each] = nil
 			end
 		elseif event.tick == FlyingItem.LandTick and FlyingItem.space == true then
 			if FlyingItem.sprite then -- from impact unloader/space throw
@@ -746,7 +746,7 @@ local function on_tick(event)
 			if FlyingItem.shadow then -- from impact unloader/space throw
 				FlyingItem.shadow.destroy()
 			end
-			storage.FlyingItems[each] = nil
+			storage.thrownItem[each] = nil
 		end
 
 		-- Ultracube non-sprite item position updating. Only done for items that require hinting as those are the ones the cube camera follows
@@ -756,7 +756,7 @@ local function on_tick(event)
 			and FlyingItem.cube_should_hint
 			and event.tick < FlyingItem.LandTick
 		then
-			CubeFlyingItems.item_with_stream_update(FlyingItem)
+			CubethrownItem.item_with_stream_update(FlyingItem)
 		end
 	end
 end
