@@ -1,5 +1,9 @@
 -------------Open Container Entity ---------------------
-local datboi = table.deepcopy(data.raw.container["iron-chest"])
+datboi = nil
+if (datboi == nil) then
+datboi = table.deepcopy(data.raw.container["iron-chest"])
+end
+--datboi = table.deepcopy(data.raw.container["iron-chest"])
 datboi.name = "OpenContainer"
 datboi.icon = "__RTOptimized__/graphics/OpenContainer/icon.png"
 datboi.picture = {

@@ -1,6 +1,10 @@
 local util = require("util")
+accumulator = nil
+if (accumulator == nil) then
+accumulator = table.deepcopy(data.raw.accumulator.accumulator)
+end
 
-local accumulator = table.deepcopy(data.raw.accumulator.accumulator)
+--local accumulator = table.deepcopy(data.raw.accumulator.accumulator)
 
 local function foreach_sprite_definition(sprite, func)
 	if sprite.layers then

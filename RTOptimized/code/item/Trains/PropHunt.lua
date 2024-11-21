@@ -1,4 +1,9 @@
-local MLG = table.deepcopy(data.raw.car["car"])
+MLG = nil
+if (MLG == nil) then
+MLG = table.deepcopy(data.raw.car["car"])
+end
+
+--local MLG = table.deepcopy(data.raw.car["car"])
 MLG.name = "RTPropCar"
 MLG.flags = {
 	"placeable-off-grid",

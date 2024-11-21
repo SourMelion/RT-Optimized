@@ -13,7 +13,12 @@ local temporaryPathingCondition = {
 }
 
 local function reEnableSchedule(train, schedule, destinationStation, properties) -- happens for the first carriage
+	schedule = nil
+	if (schedule == nil) then
 	schedule = table.deepcopy(schedule)
+	end
+	
+	--schedule = table.deepcopy(schedule)
 	-- first landed gets new schedule, check stop, if it has a limit, add the temp
 	-- at last carriage to land, if the stop limit was reduced, increase it again. Then delete temp and route to end or vice versa
 	if (destinationStation and destinationStation.valid and destinationStation.trains_limit ~= 4294967295 and destinationStation.connected_rail) then -- NoSkip ramp pathing to a station with a train limit
@@ -32,7 +37,11 @@ local function reEnableSchedule(train, schedule, destinationStation, properties)
 				wait_conditions = { temporaryPathingCondition },
 				temporary = true
 			}
-			local newSchedule = table.deepcopy(train.schedule)
+			newSchedule = nil
+			if (newSchedule == nil) then
+			newSchedule = table.deepcopy(train.schedule)
+			end
+			--local newSchedule = table.deepcopy(train.schedule)
 			table.insert(newSchedule.records, newSchedule.current, tempStation)
 			train.schedule = newSchedule
 		end
@@ -59,7 +68,11 @@ local function finalizeLandedTrain(PropUnitNumber, properties) -- happens when t
 				local firstWaitCond = dst.wait_conditions[1]
 
 				if firstWaitCond.condition and firstWaitCond.condition.first_signal and firstWaitCond.condition.first_signal.name == 'RTPropCarItem' then
-					local newSchedule = table.deepcopy(schedule)
+					newSchedule = nil
+				if (newSchedule == nil) then
+				newSchedule = table.deepcopy(train.schedule)
+				end
+					--local newSchedule = table.deepcopy(schedule)
 					table.remove(newSchedule.records, newSchedule.current)
 					properties.LandedTrain.train.schedule = newSchedule
 					properties.LandedTrain.train.go_to_station(newSchedule.current)

@@ -1,4 +1,10 @@
-local OhYouLikeTrains = table.deepcopy(data.raw["cargo-wagon"]["cargo-wagon"])
+OhYouLikeTrains = nil
+if (OhYouLikeTrains == nil) then
+OhYouLikeTrains = table.deepcopy(data.raw["cargo-wagon"]["cargo-wagon"])
+end
+
+
+--local OhYouLikeTrains = table.deepcopy(data.raw["cargo-wagon"]["cargo-wagon"])
 
 OhYouLikeTrains.name = "RTPayloadWagon"
 OhYouLikeTrains.icons = {

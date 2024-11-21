@@ -1,4 +1,11 @@
-local OhYouLikeTrains = table.deepcopy(data.raw["cargo-wagon"]["cargo-wagon"])
+
+OhYouLikeTrains = nil
+if (OhYouLikeTrains == nil) then
+OhYouLikeTrains = table.deepcopy(data.raw["cargo-wagon"]["cargo-wagon"])
+end
+
+
+--local OhYouLikeTrains = table.deepcopy(data.raw["cargo-wagon"]["cargo-wagon"])
 local color = { 100, 100, 100 }
 OhYouLikeTrains.name = "RTImpactWagon"
 OhYouLikeTrains.icons = {
@@ -21,9 +28,12 @@ OhYouLikeTrains.horizontal_doors.layers[2].tint = color
 
 OhYouLikeTrains.vertical_doors.layers[1].tint = color
 OhYouLikeTrains.vertical_doors.layers[2].tint = color
-
-local NameEveryTrainStation =
-	table.deepcopy(data.raw["train-stop"]["train-stop"])
+NameEveryTrainStation = nil
+if (NameEveryTrainStation == nil) then
+NameEveryTrainStation =	table.deepcopy(data.raw["train-stop"]["train-stop"])
+end
+--local NameEveryTrainStation =
+--	table.deepcopy(data.raw["train-stop"]["train-stop"])
 NameEveryTrainStation.name = "RTImpactUnloader"
 
 data:extend({
