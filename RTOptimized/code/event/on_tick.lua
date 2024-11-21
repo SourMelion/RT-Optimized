@@ -1,6 +1,6 @@
-local handle_players = require("__RTOptimized__.script.players.on_tick")
-local handle_trains = require("__RTOptimized__.script.trains.on_tick")
-local handle_items = require("__RTOptimized__.script.event.FlyingItems")
+local handle_players = require("__RTOptimized__.code.players.on_tick")
+local handle_trains = require("__RTOptimized__.code.item.Trains.on_tick")
+local handle_items = require("__RTOptimized__.code.event.FlyingItems")
 
 local function on_tick(event)
 	handle_players(event)

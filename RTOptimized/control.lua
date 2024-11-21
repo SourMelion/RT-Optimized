@@ -2,19 +2,19 @@ if script.active_mods["gvv"] then
 	require("__gvv__.gvv")()
 end
 if script.active_mods["Ultracube"] then
-	CubeFlyingItems = require("script.ultracube.cube_flying_items")
+	CubeFlyingItems = require("code.ultracube.cube_flying_items")
 end
 
 -- Setup tables and stuff for new/existing saves ----
-script.on_init(require("script.event.init"))
+script.on_init(require("code.event.init"))
 
 -- game version changes, prototypes change, startup mod settings change, and any time mod versions change including adding or removing mods
-script.on_configuration_changed(require("script.event.config_changed"))
+script.on_configuration_changed(require("code.event.config_changed"))
 
 ---- Add new players to the AllPlayers table ----
 script.on_event(
 	defines.events.on_player_created,
-	require("script.event.player_created")
+	require("code.event.player_created")
 )
 
 -- On Built/Copy/Stuff
@@ -28,12 +28,12 @@ script.on_event({
 	defines.events.script_raised_built, --| built by script ----
 	defines.events.on_entity_cloned, -- | cloned by script ----
 	defines.events.script_raised_revive, -- | ghost revived by script
-}, require("script.event.entity_built"))
+}, require("code.event.entity_built"))
 
 -- On Rotate
 script.on_event(
 	defines.events.on_player_rotated_entity,
-	require("script.event.rotate")
+	require("code.event.rotate")
 )
 
 -- Thrower Range blueprint auto build cancel
@@ -493,27 +493,27 @@ end)
 -- When a projectile lands and its effect_id is triggered, what to do ----
 script.on_event(
 	defines.events.on_script_trigger_effect,
-	require("script.event.effect_triggered")
+	require("code.event.effect_triggered")
 )
 
 -- Animating/On Tick
-script.on_nth_tick(1, require("script.event.on_tick"))
+script.on_nth_tick(1, require("code.event.on_tick"))
 
 -- On Damaged
 script.on_event(
 	defines.events.on_entity_damaged,
-	require("script.event.entity_damaged")
+	require("code.event.entity_damaged")
 )
 
 -- On Interact
-script.on_event("RTInteract", require("script.event.interact"))
+script.on_event("RTInteract", require("code.event.interact"))
 
 -- On Click
-script.on_event("RTClick", require("script.event.click"))
+script.on_event("RTClick", require("code.event.click"))
 
 script.on_event(
 	defines.events.on_object_destroyed,
-	require("script.event.entity_destroyed")
+	require("code.event.entity_destroyed")
 )
 
 script.on_event(
@@ -575,10 +575,10 @@ script.on_event(defines.events.on_gui_closed, function(event)
 end)
 
 -- a bunch of functions used in various other places
-require("script.MiscFunctions")
-require("script.GUIs")
+require("code.MiscFunctions")
+require("code.GUIs")
 
-script.on_event(defines.events.on_gui_click, require("script.event.ClickGUI"))
+script.on_event(defines.events.on_gui_click, require("code.event.ClickGUI"))
 
 -- displaying things on hover
 script.on_event(

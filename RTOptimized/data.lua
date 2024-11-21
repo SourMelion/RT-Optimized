@@ -1,25 +1,25 @@
-require("prototypes.technology")
-require("prototypes.sounds")
-require("prototypes.TabSortingStuff")
-require("prototypes.TrainGoBrrrr.PropHunt")
+require("code.technology")
+require("code.sounds")
+require("code.TabSortingStuff")
+require("code.item.Trains.PropHunt")
 
 if settings.startup["RTThrowersSetting"].value == true then
-	require("prototypes.BouncePlates.BouncePlate")
-	require("prototypes.BouncePlates.DirectedBouncePlate")
-	require("prototypes.BouncePlates.DirectorBouncePlate")
-	require("prototypes.PlayerLauncher")
-	require("prototypes.OpenContainer")
-	require("prototypes.hatch")
+	require("code.item.BouncePlates.BouncePlate")
+	require("code.item.BouncePlates.DirectedBouncePlate")
+	require("code.item.BouncePlates.DirectorBouncePlate")
+	require("code.item.PlayerLauncher")
+	require("code.item.OpenContainer")
+	require("code.item.hatch")
 
 	if settings.startup["RTBounceSetting"].value == true then
-		require("prototypes.BouncePlates.PrimerBouncePlate")
+		require("code.item.BouncePlates.PrimerBouncePlate")
 		--require("prototypes.BouncePlates.SignalBouncePlate")
 
-		require("prototypes.PrimerThrower.CheckingTurret")
-		require("prototypes.PrimerThrower.PrimerThrowerInserter")
+		require("code.item.PrimerThrower.CheckingTurret")
+		require("code.item.PrimerThrower.PrimerThrowerInserter")
 
 		if settings.startup["RTTrainRampSetting"].value == true then
-			require("prototypes.TrainGoBrrrr.PayloadWagon")
+			require("code.item.Trains.PayloadWagon")
 		end
 	end
 
@@ -27,22 +27,22 @@ if settings.startup["RTThrowersSetting"].value == true then
 		settings.startup["RTTrainBounceSetting"].value == true
 		and settings.startup["RTTrainRampSetting"].value == true
 	then
-		require("prototypes.BouncePlates.TrainBouncePlate")
-		require("prototypes.BouncePlates.TrainDirectedBouncePlate")
+		require("code.item.BouncePlates.TrainBouncePlate")
+		require("code.item.BouncePlates.TrainDirectedBouncePlate")
 	end
 end
 
 if settings.startup["RTTrainRampSetting"].value == true then
-	require("prototypes.TrainGoBrrrr.prototypes.ramps")
-	require("prototypes.TrainGoBrrrr.sprites.base")
-	require("prototypes.TrainGoBrrrr.GhostLoco")
+	require("code.item.Trains.prototypes.ramps")
+	require("code.item.Trains.sprites.base")
+	require("code.item.Trains.GhostLoco")
 	if settings.startup["RTImpactSetting"].value == true then
-		require("prototypes.TrainGoBrrrr.ImpactWagon")
+		require("code.item.Trains.ImpactWagon")
 	end
 end
 
 if settings.startup["RTZiplineSetting"].value == true then
-	require("prototypes.zipline")
+	require("code.item.zipline")
 end
 
 data:extend({

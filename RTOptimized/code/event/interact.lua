@@ -1,5 +1,5 @@
 ---@diagnostic disable: need-check-nil
-local magnetRamps = require("__RTOptimized__/script/trains/magnet_ramps")
+local magnetRamps = require("__RTOptimized__/code/item/Trains/magnet_ramps")
 local function interact(event1) -- has .name = event ID number, .tick = tick number, .player_index, and .input_name = custom input name
 	local player = game.get_player(event1.player_index)
 	local PlayerProperties = storage.AllPlayers[event1.player_index]

@@ -1,7 +1,7 @@
 local math2d = require("math2d")
 local util = require("util")
 local constants = require("constants")
-local magnetRampsStuff = require("__RTOptimized__/script/trains/magnet_ramps")
+local magnetRampsStuff = require("__RTOptimized__/code/item/Trains/magnet_ramps")
 
 local function handleMagnetRampBuilt(entity)
 	local OnDestroyNumber = script.register_on_object_destroyed(entity)

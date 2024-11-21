@@ -1,4 +1,4 @@
-local trainHandler = require("__RTOptimized__/script/trains/entity_built")
+local trainHandler = require("__RTOptimized__/code/item/Trains/entity_built")
 
 local function entity_built(event)
 	local entity = event.created_entity or event.entity or event.destination

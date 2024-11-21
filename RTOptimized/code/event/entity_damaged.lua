@@ -1,8 +1,8 @@
 if script.active_mods["Ultracube"] then
-	CubeFlyingItems = require("script.ultracube.cube_flying_items")
+	CubeFlyingItems = require("code.ultracube.cube_flying_items")
 end
 if script.active_mods["Ultracube"] then
-	CubeFlyingTrains = require("script.ultracube.cube_flying_trains")
+	CubeFlyingTrains = require("code.ultracube.cube_flying_trains")
 end
 
 local function entity_damaged(event)

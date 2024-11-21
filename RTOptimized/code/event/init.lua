@@ -1,4 +1,4 @@
-local ultracube_globals = require("script.ultracube.cube_global_handling")
+local ultracube_globals = require("code.ultracube.cube_global_handling")
 
 local function on_int()
 	if storage.CatapultList == nil then

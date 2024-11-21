@@ -1,5 +1,5 @@
 if script.active_mods["Ultracube"] then
-	CubeFlyingItems = require("script.ultracube.cube_flying_items")
+	CubeFlyingItems = require("code.ultracube.cube_flying_items")
 end
 
 local function on_tick(event)

@@ -1,4 +1,4 @@
-if script.active_mods["Ultracube"] then CubeFlyingTrains = require("script.ultracube.cube_flying_trains") end
+if script.active_mods["Ultracube"] then CubeFlyingTrains = require("code.ultracube.cube_flying_trains") end
 
 local Animation = require("animation")
 

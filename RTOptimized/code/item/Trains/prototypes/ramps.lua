@@ -1,6 +1,6 @@
 local util = require("util")
 
-local constants = require("__RTOptimized__/script/trains/constants")
+local constants = require("__RTOptimized__/code/item/Trains/constants")
 
 local function makeRampItem(name, icon, placerEntity)
 	return {
