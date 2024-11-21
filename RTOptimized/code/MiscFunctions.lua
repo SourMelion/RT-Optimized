@@ -136,7 +136,7 @@ function SwapToGhost(player)
 end
 
 ---- swapping back from character ghost copy from using the ziplines or player launcher
-function SwapBackFromGhost(player, FlyingItem)
+function addObjectColisionBack(player, FlyingItem)
 	if FlyingItem then
 		storage.AllPlayers[FlyingItem.player.index].state = "default"
 		storage.AllPlayers[FlyingItem.player.index].PlayerLauncher = {}

@@ -1,53 +1,54 @@
+--TO_DO
+--simplify bounce plates, make them have a 1 slot inventory, and simply treat the throwing same as
+--	-> throwerinserters, handle directionality by a simple property stored on the bounce plate
+--	-> litteraly bouncepad.throwDirection = "up"  otehr values, "same" "left" "right" "down"
+--	-> probly make a configuration window like bobs and use that to configure distance and direction
+--	-> just a simple check for wheter or not the item was thrown to it to determine wheter or not to
+--	-> throw it, so it cant be used as a free energy thrower
+--rename bouncePlate to bouncepad, its bouncepad ingame why shuld it be different in code
+
+--VARIABLES
+
+--FUNCTIONS
+
+--EVENTS
+
+--RUNTIME
+
 if script.active_mods["Ultracube"] then
 	CubethrownItem = require("code.ultracube.cube_flying_items")
 end
 
 local function on_tick(event)
-	for each, FlyingItem in pairs(storage.thrownItem) do
+	for each, thrownItem in pairs(storage.thrownItem) do
 		local clear = true
 
-		if FlyingItem.sprite and event.tick < FlyingItem.LandTick then -- for now only impact unloader items have sprites and need animating like this
-			local duration = event.tick - FlyingItem.StartTick
-			local x_coord = FlyingItem.path[duration].x
-			local y_coord = FlyingItem.path[duration].y
-			local height = FlyingItem.path[duration].height
-			local orientation = FlyingItem.spin * duration
-			FlyingItem.sprite.target = { x_coord, y_coord + height }
-			FlyingItem.sprite.orientation = orientation
-			if FlyingItem.space == false then
-				FlyingItem.shadow.target = { x_coord - height, y_coord }
-				FlyingItem.shadow.orientation = orientation
-			end
-
-			if storage.Ultracube and FlyingItem.cube_token_id then
-				CubethrownItem.item_with_sprite_update(FlyingItem, duration)
-			end
-		elseif event.tick == FlyingItem.LandTick and FlyingItem.space == false then
+		if event.tick == thrownItem.LandTick and thrownItem.space == false then
 			--game.print(each);	--DEBUG
-			local ThingLandedOn = FlyingItem.surface.find_entities_filtered({
+			local ThingLandedOn = thrownItem.surface.find_entities_filtered({
 				position = {
-					math.floor(FlyingItem.target.x) + 0.5,
-					math.floor(FlyingItem.target.y) + 0.5,
+					math.floor(thrownItem.target.x) + 0.5,
+					math.floor(thrownItem.target.y) + 0.5,
 				},
 				collision_mask = "object",
 			})[1]
-			local LandedOnCargoWagon = FlyingItem.surface.find_entities_filtered({
+			local LandedOnCargoWagon = thrownItem.surface.find_entities_filtered({
 				area = {
-					{ FlyingItem.target.x - 0.5, FlyingItem.target.y - 0.5 },
-					{ FlyingItem.target.x + 0.5, FlyingItem.target.y + 0.5 },
+					{ thrownItem.target.x - 0.5, thrownItem.target.y - 0.5 },
+					{ thrownItem.target.x + 0.5, thrownItem.target.y + 0.5 },
 				},
 				type = "cargo-wagon",
 			})[1]
 			-- landed on something
 			if ThingLandedOn then
 				if string.find(ThingLandedOn.name, "BouncePlate") then -- if that thing was a bounce plate
-					if FlyingItem.sprite then -- from impact unloader
-						FlyingItem.sprite.destroy()
-						FlyingItem.sprite = nil
+					if thrownItem.sprite then -- from impact unloader
+						thrownItem.sprite.destroy()
+						thrownItem.sprite = nil
 					end
-					if FlyingItem.shadow and FlyingItem.player == nil then -- from impact unloader
-						FlyingItem.shadow.destroy()
-						FlyingItem.shadow = nil
+					if thrownItem.shadow and thrownItem.player == nil then -- from impact unloader
+						thrownItem.shadow.destroy()
+						thrownItem.shadow = nil
 					end
 					clear = false
 					local unitx = 1
@@ -56,8 +57,8 @@ local function on_tick(event)
 					if string.find(ThingLandedOn.name, "DirectedBouncePlate") then
 						unitx = storage.OrientationUnitComponents[ThingLandedOn.orientation].x
 						unity = storage.OrientationUnitComponents[ThingLandedOn.orientation].y
-						if FlyingItem.player then
-							storage.AllPlayers[FlyingItem.player.index].PlayerLauncher.direction =
+						if thrownItem.player then
+							storage.AllPlayers[thrownItem.player.index].PlayerLauncher.direction =
 								storage.OrientationUnitComponents[ThingLandedOn.orientation].name
 						end
 					elseif string.find(ThingLandedOn.name, "DirectorBouncePlate") then
@@ -66,7 +67,7 @@ local function on_tick(event)
 								local setting = ThingLandedOn.get_or_create_control_behavior()
 									.get_section(section)
 									.get_slot(slot).value
-								if setting and setting.name and setting.name == FlyingItem.item then
+								if setting and setting.name and setting.name == thrownItem.item then
 									if section == 1 then
 										unitx = 0
 										unity = -1
@@ -84,37 +85,38 @@ local function on_tick(event)
 										unity = 0
 										effect = "BouncePlateParticleyellow"
 									end
-									goto kkkkkk
+									goto labelK
 								end
 							end
 						end
-						::kkkkkk::
+						::labelK:: --we shuld not be using label ffs, not eavrybody knows and
+						--	-> understand them and they are very rarely necesarry
 						if unitx == 1 and unity == 1 then -- if there is no matching signal
 							if
-								FlyingItem.start.y > FlyingItem.target.y
-								and math.abs(FlyingItem.start.y - FlyingItem.target.y)
-									> math.abs(FlyingItem.start.x - FlyingItem.target.x)
+								thrownItem.start.y > thrownItem.target.y
+								and math.abs(thrownItem.start.y - thrownItem.target.y)
+									> math.abs(thrownItem.start.x - thrownItem.target.x)
 							then
 								unitx = 0
 								unity = -1
 							elseif
-								FlyingItem.start.y < FlyingItem.target.y
-								and math.abs(FlyingItem.start.y - FlyingItem.target.y)
-									> math.abs(FlyingItem.start.x - FlyingItem.target.x)
+								thrownItem.start.y < thrownItem.target.y
+								and math.abs(thrownItem.start.y - thrownItem.target.y)
+									> math.abs(thrownItem.start.x - thrownItem.target.x)
 							then
 								unitx = 0
 								unity = 1
 							elseif
-								FlyingItem.start.x > FlyingItem.target.x
-								and math.abs(FlyingItem.start.y - FlyingItem.target.y)
-									< math.abs(FlyingItem.start.x - FlyingItem.target.x)
+								thrownItem.start.x > thrownItem.target.x
+								and math.abs(thrownItem.start.y - thrownItem.target.y)
+									< math.abs(thrownItem.start.x - thrownItem.target.x)
 							then
 								unitx = -1
 								unity = 0
 							elseif
-								FlyingItem.start.x < FlyingItem.target.x
-								and math.abs(FlyingItem.start.y - FlyingItem.target.y)
-									< math.abs(FlyingItem.start.x - FlyingItem.target.x)
+								thrownItem.start.x < thrownItem.target.x
+								and math.abs(thrownItem.start.y - thrownItem.target.y)
+									< math.abs(thrownItem.start.x - thrownItem.target.x)
 							then
 								unitx = 1
 								unity = 0
@@ -122,32 +124,32 @@ local function on_tick(event)
 						end
 					elseif string.find(ThingLandedOn.name, "BouncePlate") then
 						---- determine "From" direction ----
-						local origin = FlyingItem.ThrowerPosition or FlyingItem.start
+						local origin = thrownItem.ThrowerPosition or thrownItem.start
 						if
-							origin.y > FlyingItem.target.y
-							and math.abs(origin.y - FlyingItem.target.y)
-								> math.abs(origin.x - FlyingItem.target.x)
+							origin.y > thrownItem.target.y
+							and math.abs(origin.y - thrownItem.target.y)
+								> math.abs(origin.x - thrownItem.target.x)
 						then
 							unitx = 0
 							unity = -1
 						elseif
-							origin.y < FlyingItem.target.y
-							and math.abs(origin.y - FlyingItem.target.y)
-								> math.abs(origin.x - FlyingItem.target.x)
+							origin.y < thrownItem.target.y
+							and math.abs(origin.y - thrownItem.target.y)
+								> math.abs(origin.x - thrownItem.target.x)
 						then
 							unitx = 0
 							unity = 1
 						elseif
-							origin.x > FlyingItem.target.x
-							and math.abs(origin.y - FlyingItem.target.y)
-								< math.abs(origin.x - FlyingItem.target.x)
+							origin.x > thrownItem.target.x
+							and math.abs(origin.y - thrownItem.target.y)
+								< math.abs(origin.x - thrownItem.target.x)
 						then
 							unitx = -1
 							unity = 0
 						elseif
-							origin.x < FlyingItem.target.x
-							and math.abs(origin.y - FlyingItem.target.y)
-								< math.abs(origin.x - FlyingItem.target.x)
+							origin.x < thrownItem.target.x
+							and math.abs(origin.y - thrownItem.target.y)
+								< math.abs(origin.x - thrownItem.target.x)
 						then
 							unitx = 1
 							unity = 0
@@ -178,8 +180,8 @@ local function on_tick(event)
 					-- Modifiers --
 					if
 						ThingLandedOn.name == "PrimerBouncePlate"
-						and FlyingItem.player == nil
-						and prototypes.entity[FlyingItem.item .. "-projectileFromRenaiTransportationPrimed"]
+						and thrownItem.player == nil
+						and prototypes.entity[thrownItem.item .. "-projectileFromRenaiTransportationPrimed"]
 					then
 						primable = "Primed"
 						RangeBonus = 30
@@ -187,8 +189,8 @@ local function on_tick(event)
 						effect = "PrimerBouncePlateParticle"
 					elseif
 						ThingLandedOn.name == "PrimerSpreadBouncePlate"
-						and FlyingItem.player == nil
-						and prototypes.entity[FlyingItem.item .. "-projectileFromRenaiTransportationPrimed"]
+						and thrownItem.player == nil
+						and prototypes.entity[thrownItem.item .. "-projectileFromRenaiTransportationPrimed"]
 					then
 						primable = "Primed"
 						tunez = "PrimeClick"
@@ -199,16 +201,16 @@ local function on_tick(event)
 						effect = "SignalBouncePlateParticle"
 					end
 
-					if not FlyingItem.tracing then --if its an item and not a tracer
+					if not thrownItem.tracing then --if its an item and not a tracer
 						---- Creating the bounced thing ----
 						if primable == "Primed" then
-							for kidamogus = 1, FlyingItem.amount do
+							for kidamogus = 1, thrownItem.amount do
 								if ThingLandedOn.name == "PrimerSpreadBouncePlate" then
 									RangeBonus = math.random(270, 300) * 0.1
 									SidewaysShift = math.random(-200, 200) * 0.1
 								end
 								ThingLandedOn.surface.create_entity({
-									name = FlyingItem.item
+									name = thrownItem.item
 										.. "-projectileFromRenaiTransportation"
 										.. primable,
 									position = ThingLandedOn.position, --required setting for rendering, doesn't affect spawn
@@ -237,32 +239,32 @@ local function on_tick(event)
 									+ (TargetY - ThingLandedOn.position.y) ^ 2
 							)
 							if string.find(ThingLandedOn.name, "Train") then
-								FlyingItem.speed = 0.6
+								thrownItem.speed = 0.6
 							else
-								FlyingItem.speed = 0.18
+								thrownItem.speed = 0.18
 							end
-							local AirTime = math.floor(distance / FlyingItem.speed)
-							FlyingItem.target = { x = TargetX, y = TargetY }
-							FlyingItem.start = ThingLandedOn.position
-							FlyingItem.ThrowerPosition = ThingLandedOn.position
-							FlyingItem.StartTick = game.tick
-							FlyingItem.AirTime = AirTime
-							FlyingItem.LandTick = game.tick + AirTime
-							if FlyingItem.player == nil then -- the player doesnt have a projectile sprite
+							local AirTime = math.floor(distance / thrownItem.speed)
+							thrownItem.target = { x = TargetX, y = TargetY }
+							thrownItem.start = ThingLandedOn.position
+							thrownItem.ThrowerPosition = ThingLandedOn.position
+							thrownItem.StartTick = game.tick
+							thrownItem.AirTime = AirTime
+							thrownItem.LandTick = game.tick + AirTime
+							if thrownItem.player == nil then -- the player doesnt have a projectile sprite
 								if
-									prototypes.entity["RTItemProjectile-" .. FlyingItem.item .. FlyingItem.speed * 100]
+									prototypes.entity["RTItemProjectile-" .. thrownItem.item .. thrownItem.speed * 100]
 								then
-									FlyingItem.surface.create_entity({
+									thrownItem.surface.create_entity({
 										name = "RTItemProjectile-"
-											.. FlyingItem.item
-											.. FlyingItem.speed * 100,
+											.. thrownItem.item
+											.. thrownItem.speed * 100,
 										position = ThingLandedOn.position,
 										source_position = ThingLandedOn.position,
 										target_position = { TargetX, TargetY },
 									})
 								else
-									FlyingItem.surface.create_entity({
-										name = "RTTestProjectile" .. FlyingItem.speed * 100,
+									thrownItem.surface.create_entity({
+										name = "RTTestProjectile" .. thrownItem.speed * 100,
 										position = ThingLandedOn.position,
 										source_position = ThingLandedOn.position,
 										target_position = { TargetX, TargetY },
@@ -270,11 +272,11 @@ local function on_tick(event)
 								end
 
 								-- (If applicable) Update Ultracube ownership token to keep its timeout set to just after each bounce
-								if storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-									CubethrownItem.bounce_update(FlyingItem)
+								if storage.Ultracube and thrownItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
+									CubethrownItem.bounce_update(thrownItem)
 								end
 							else -- the player does have a vector
-								FlyingItem.vector = {
+								thrownItem.vector = {
 									x = TargetX - ThingLandedOn.position.x,
 									y = TargetY - ThingLandedOn.position.y,
 								}
@@ -300,17 +302,17 @@ local function on_tick(event)
 								script.register_on_object_destroyed(ThingLandedOn)
 							if storage.ThrowerPaths[OnDestroyNumber] == nil then
 								storage.ThrowerPaths[OnDestroyNumber] = {}
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing] = {}
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing][FlyingItem.item] =
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing] = {}
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing][thrownItem.item] =
 									true
 							elseif
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing] == nil
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing] == nil
 							then
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing] = {}
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing][FlyingItem.item] =
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing] = {}
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing][thrownItem.item] =
 									true
 							else
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing][FlyingItem.item] =
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing][thrownItem.item] =
 									true
 							end
 
@@ -320,36 +322,36 @@ local function on_tick(event)
 							local y = ThingLandedOn.position.y
 								+ unity * (range + RangeBonus)
 								+ unitx * SidewaysShift
-							FlyingItem.target = { x = x, y = y }
-							FlyingItem.start = ThingLandedOn.position
-							FlyingItem.StartTick = game.tick
-							FlyingItem.AirTime = 1
-							FlyingItem.LandTick = game.tick + 1
+							thrownItem.target = { x = x, y = y }
+							thrownItem.start = ThingLandedOn.position
+							thrownItem.StartTick = game.tick
+							thrownItem.AirTime = 1
+							thrownItem.LandTick = game.tick + 1
 						else
-							storage.CatapultList[FlyingItem.tracing].ImAlreadyTracer = "traced"
-							storage.CatapultList[FlyingItem.tracing].targets[FlyingItem.item] =
+							storage.CatapultList[thrownItem.tracing].ImAlreadyTracer = "traced"
+							storage.CatapultList[thrownItem.tracing].targets[thrownItem.item] =
 								"nothing"
 							clear = true
 						end
 					end
 
 					-- non-tracers falling on something
-				elseif FlyingItem.tracing == nil then
+				elseif thrownItem.tracing == nil then
 					-- players falling on something
-					if FlyingItem.player then
+					if thrownItem.player then
 						---- Doesn't make sense for player landing on cliff to destroy it ----
 						if ThingLandedOn.name == "cliff" then
-							FlyingItem.player.teleport(
+							thrownItem.player.teleport(
 								ThingLandedOn.surface.find_non_colliding_position(
 									"iron-chest",
-									FlyingItem.target,
+									thrownItem.target,
 									0,
 									0.5
 								)
 							)
 						elseif ThingLandedOn.name ~= "PlayerLauncher" then
 							---- Damage the player based on thing's size and destroy what they landed on to prevent getting stuck ----
-							FlyingItem.player.character.damage(
+							thrownItem.player.character.damage(
 								10
 									* (ThingLandedOn.bounding_box.right_bottom.x - ThingLandedOn.bounding_box.left_top.x)
 									* (
@@ -367,19 +369,19 @@ local function on_tick(event)
 						if
 							ThingLandedOn.name == "OpenContainer"
 							and ThingLandedOn.can_insert({
-								name = FlyingItem.item,
-								quality = FlyingItem.quality,
+								name = thrownItem.item,
+								quality = thrownItem.quality,
 							})
 						then
-							if FlyingItem.CloudStorage then
-								ThingLandedOn.insert(FlyingItem.CloudStorage[1])
-								FlyingItem.CloudStorage.destroy()
-							elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-								CubethrownItem.release_and_insert(FlyingItem, ThingLandedOn)
+							if thrownItem.CloudStorage then
+								ThingLandedOn.insert(thrownItem.CloudStorage[1])
+								thrownItem.CloudStorage.destroy()
+							elseif storage.Ultracube and thrownItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
+								CubethrownItem.release_and_insert(thrownItem, ThingLandedOn)
 							else
 								ThingLandedOn.insert({
-									name = FlyingItem.item,
-									count = FlyingItem.amount,
+									name = thrownItem.item,
+									count = thrownItem.amount,
 								})
 							end
 							ThingLandedOn.surface.play_sound({
@@ -391,19 +393,19 @@ local function on_tick(event)
 							---- If the thing it landed on has an inventory and a hatch, insert the item ----
 						elseif
 							ThingLandedOn.surface.find_entity("HatchRT", {
-								math.floor(FlyingItem.target.x) + 0.5,
-								math.floor(FlyingItem.target.y) + 0.5,
-							}) and ThingLandedOn.can_insert({ name = FlyingItem.item })
+								math.floor(thrownItem.target.x) + 0.5,
+								math.floor(thrownItem.target.y) + 0.5,
+							}) and ThingLandedOn.can_insert({ name = thrownItem.item })
 						then
-							if FlyingItem.CloudStorage then
-								ThingLandedOn.insert(FlyingItem.CloudStorage[1])
-								FlyingItem.CloudStorage.destroy()
-							elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-								CubethrownItem.release_and_insert(FlyingItem, ThingLandedOn)
+							if thrownItem.CloudStorage then
+								ThingLandedOn.insert(thrownItem.CloudStorage[1])
+								thrownItem.CloudStorage.destroy()
+							elseif storage.Ultracube and thrownItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
+								CubethrownItem.release_and_insert(thrownItem, ThingLandedOn)
 							else
 								ThingLandedOn.insert({
-									name = FlyingItem.item,
-									count = FlyingItem.amount,
+									name = thrownItem.item,
+									count = thrownItem.amount,
 								})
 							end
 							ThingLandedOn.surface.play_sound({
@@ -415,45 +417,45 @@ local function on_tick(event)
 							---- If it landed on something but there's also a cargo wagon there
 						elseif
 							LandedOnCargoWagon ~= nil
-							and LandedOnCargoWagon.can_insert({ name = FlyingItem.item })
+							and LandedOnCargoWagon.can_insert({ name = thrownItem.item })
 						then
-							if FlyingItem.CloudStorage then
-								LandedOnCargoWagon.insert(FlyingItem.CloudStorage[1])
-								FlyingItem.CloudStorage.destroy()
-							elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-								CubethrownItem.release_and_insert(FlyingItem, LandedOnCargoWagon)
+							if thrownItem.CloudStorage then
+								LandedOnCargoWagon.insert(thrownItem.CloudStorage[1])
+								thrownItem.CloudStorage.destroy()
+							elseif storage.Ultracube and thrownItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
+								CubethrownItem.release_and_insert(thrownItem, LandedOnCargoWagon)
 							else
 								LandedOnCargoWagon.insert({
-									name = FlyingItem.item,
-									count = FlyingItem.amount,
+									name = thrownItem.item,
+									count = thrownItem.amount,
 								})
 							end
 
-							-- If it's an Ultracube FlyingItem, just spill it near whatever it landed on, potentially onto a belt
-						elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-							CubethrownItem.release_and_spill(FlyingItem, ThingLandedOn)
+							-- If it's an Ultracube thrownItem, just spill it near whatever it landed on, potentially onto a belt
+						elseif storage.Ultracube and thrownItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
+							CubethrownItem.release_and_spill(thrownItem, ThingLandedOn)
 
 							---- otherwise it bounces off whatever it landed on and lands as an item on the nearest empty space within 10 tiles. destroyed if no space ----
 						else
-							if FlyingItem.CloudStorage then -- for things with data/tags or whatever, should only ever be 1 in stack
+							if thrownItem.CloudStorage then -- for things with data/tags or whatever, should only ever be 1 in stack
 								if ThingLandedOn.type == "transport-belt" then
 									for l = 1, 2 do
 										for i = 0, 0.9, 0.1 do
 											if
-												FlyingItem.CloudStorage[1].count > 0
+												thrownItem.CloudStorage[1].count > 0
 												and ThingLandedOn.get_transport_line(l).can_insert_at(i) == true
 											then
 												ThingLandedOn.get_transport_line(l)
-													.insert_at(i, FlyingItem.CloudStorage[1])
-												FlyingItem.CloudStorage[1].count = FlyingItem.CloudStorage[1].count
+													.insert_at(i, thrownItem.CloudStorage[1])
+												thrownItem.CloudStorage[1].count = thrownItem.CloudStorage[1].count
 													- 1
 											end
 										end
 									end
 								end
-								FlyingItem.CloudStorage.destroy()
+								thrownItem.CloudStorage.destroy()
 							else -- depreciated drop method from old item tracking system
-								local total = FlyingItem.amount
+								local total = thrownItem.amount
 								if ThingLandedOn.type == "transport-belt" then
 									for l = 1, 2 do
 										for i = 0, 0.9, 0.1 do
@@ -462,7 +464,7 @@ local function on_tick(event)
 												and ThingLandedOn.get_transport_line(l).can_insert_at(i) == true
 											then
 												ThingLandedOn.get_transport_line(l)
-													.insert_at(i, { name = FlyingItem.item, count = 1 })
+													.insert_at(i, { name = thrownItem.item, count = 1 })
 												total = total - 1
 											end
 										end
@@ -470,23 +472,23 @@ local function on_tick(event)
 								end
 								if total > 0 then
 									if settings.global["RTSpillSetting"].value == "Destroy" then
-										FlyingItem.surface.pollute(FlyingItem.target, total * 0.5)
-										FlyingItem.surface.create_entity({
+										thrownItem.surface.pollute(thrownItem.target, total * 0.5)
+										thrownItem.surface.create_entity({
 											name = "water-splash",
-											position = FlyingItem.target,
+											position = thrownItem.target,
 										})
 									else
-										local spilt = FlyingItem.surface.spill_item_stack({
-											position = FlyingItem.surface.find_non_colliding_position(
+										local spilt = thrownItem.surface.spill_item_stack({
+											position = thrownItem.surface.find_non_colliding_position(
 												"item-on-ground",
-												FlyingItem.target,
+												thrownItem.target,
 												500,
 												0.1
 											),
 											stack = {
-												name = FlyingItem.item,
+												name = thrownItem.item,
 												count = total,
-												quality = FlyingItem.quality,
+												quality = thrownItem.quality,
 											},
 										})
 										if settings.global["RTSpillSetting"].value == "Spill and Mark" then
@@ -501,61 +503,61 @@ local function on_tick(event)
 					end
 					-- tracers falling on something
 				else
-					if storage.CatapultList[FlyingItem.tracing] then
+					if storage.CatapultList[thrownItem.tracing] then
 						if LandedOnCargoWagon then
 							local OnDestroyNumber =
 								script.register_on_object_destroyed(LandedOnCargoWagon)
-							storage.CatapultList[FlyingItem.tracing].targets[FlyingItem.item] =
+							storage.CatapultList[thrownItem.tracing].targets[thrownItem.item] =
 								LandedOnCargoWagon
 							if storage.ThrowerPaths[OnDestroyNumber] == nil then
 								storage.ThrowerPaths[OnDestroyNumber] = {}
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing] = {}
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing][FlyingItem.item] =
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing] = {}
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing][thrownItem.item] =
 									true
 							elseif
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing] == nil
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing] == nil
 							then
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing] = {}
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing][FlyingItem.item] =
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing] = {}
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing][thrownItem.item] =
 									true
 							else
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing][FlyingItem.item] =
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing][thrownItem.item] =
 									true
 							end
 						elseif ThingLandedOn.unit_number == nil then -- cliffs/trees/other things without unit_numbers
-							storage.CatapultList[FlyingItem.tracing].targets[FlyingItem.item] =
+							storage.CatapultList[thrownItem.tracing].targets[thrownItem.item] =
 								"nothing"
 						else
 							local OnDestroyNumber =
 								script.register_on_object_destroyed(ThingLandedOn)
-							storage.CatapultList[FlyingItem.tracing].targets[FlyingItem.item] =
+							storage.CatapultList[thrownItem.tracing].targets[thrownItem.item] =
 								ThingLandedOn
 							if storage.ThrowerPaths[OnDestroyNumber] == nil then
 								storage.ThrowerPaths[OnDestroyNumber] = {}
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing] = {}
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing][FlyingItem.item] =
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing] = {}
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing][thrownItem.item] =
 									true
 							elseif
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing] == nil
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing] == nil
 							then
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing] = {}
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing][FlyingItem.item] =
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing] = {}
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing][thrownItem.item] =
 									true
 							else
-								storage.ThrowerPaths[OnDestroyNumber][FlyingItem.tracing][FlyingItem.item] =
+								storage.ThrowerPaths[OnDestroyNumber][thrownItem.tracing][thrownItem.item] =
 									true
 							end
 						end
-						storage.CatapultList[FlyingItem.tracing].ImAlreadyTracer = "traced"
+						storage.CatapultList[thrownItem.tracing].ImAlreadyTracer = "traced"
 					end
 				end
 
 				-- didn't land on anything
-			elseif FlyingItem.tracing == nil then -- thrown items
-				local ProjectileSurface = FlyingItem.surface
+			elseif thrownItem.tracing == nil then -- thrown items
+				local ProjectileSurface = thrownItem.surface
 				if
 					ProjectileSurface.find_tiles_filtered({
-						position = FlyingItem.target,
+						position = thrownItem.target,
 						radius = 1,
 						limit = 1,
 						collision_mask = "lava_tile",
@@ -563,47 +565,47 @@ local function on_tick(event)
 				then
 					ProjectileSurface.create_entity({
 						name = "wall-explosion",
-						position = FlyingItem.target,
+						position = thrownItem.target,
 					})
 					ProjectileSurface.create_trivial_smoke({
 						name = "fire-smoke",
-						position = FlyingItem.target,
+						position = thrownItem.target,
 					})
-					if FlyingItem.player then
-						FlyingItem.player.character.die()
+					if thrownItem.player then
+						thrownItem.player.character.die()
 					else
 						if
 							(
-								FlyingItem.item == "ironclad"
-								or FlyingItem.item == "ironclad-ironclad-mortar"
-								or FlyingItem.item == "ironclad-ironclad-cannon"
+								thrownItem.item == "ironclad"
+								or thrownItem.item == "ironclad-ironclad-mortar"
+								or thrownItem.item == "ironclad-ironclad-cannon"
 							)
 							and script.active_mods["aai-vehicles-ironclad"]
 							and ProjectileSurface.can_place_entity({
 									name = "ironclad",
-									position = FlyingItem.target,
+									position = thrownItem.target,
 								})
 								== true
 						then
 							ProjectileSurface.create_entity({
-								name = FlyingItem.item,
-								position = FlyingItem.target,
+								name = thrownItem.item,
+								position = thrownItem.target,
 								force = "player",
 								raise_built = true,
 							})
-						elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-							CubethrownItem.panic(FlyingItem) -- Purposefully resort to Ultracube forced recovery
+						elseif storage.Ultracube and thrownItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
+							CubethrownItem.panic(thrownItem) -- Purposefully resort to Ultracube forced recovery
 						else
-							ProjectileSurface.pollute(FlyingItem.target, FlyingItem.amount * 0.5)
+							ProjectileSurface.pollute(thrownItem.target, thrownItem.amount * 0.5)
 						end
 
-						if FlyingItem.CloudStorage then
-							FlyingItem.CloudStorage.destroy()
+						if thrownItem.CloudStorage then
+							thrownItem.CloudStorage.destroy()
 						end
 					end
 				elseif
 					ProjectileSurface.find_tiles_filtered({
-						position = FlyingItem.target,
+						position = thrownItem.target,
 						radius = 0.01,
 						limit = 1,
 						collision_mask = "player",
@@ -611,12 +613,12 @@ local function on_tick(event)
 				then -- in theory, tiles the player cant walk on are some sort of fluid or other non-survivable ground
 					ProjectileSurface.create_entity({
 						name = "water-splash",
-						position = FlyingItem.target,
+						position = thrownItem.target,
 					})
 					for eee = 1, 2 do
 						ProjectileSurface.create_particle({
 							name = "metal-particle-small",
-							position = FlyingItem.target,
+							position = thrownItem.target,
 							movement = { -0.01, 0 },
 							height = 0,
 							vertical_speed = -0.1,
@@ -624,77 +626,77 @@ local function on_tick(event)
 						})
 					end
 
-					if FlyingItem.player then
-						FlyingItem.player.character.die()
+					if thrownItem.player then
+						thrownItem.player.character.die()
 					else
-						if FlyingItem.item == "raw-fish" then
-							for i = 1, math.floor(FlyingItem.amount / 5) do
+						if thrownItem.item == "raw-fish" then
+							for i = 1, math.floor(thrownItem.amount / 5) do
 								ProjectileSurface.create_entity({
 									name = "fish",
-									position = FlyingItem.target,
+									position = thrownItem.target,
 								})
 							end
 						elseif
 							(
-								FlyingItem.item == "ironclad"
-								or FlyingItem.item == "ironclad-ironclad-mortar"
-								or FlyingItem.item == "ironclad-ironclad-cannon"
+								thrownItem.item == "ironclad"
+								or thrownItem.item == "ironclad-ironclad-mortar"
+								or thrownItem.item == "ironclad-ironclad-cannon"
 							)
 							and script.active_mods["aai-vehicles-ironclad"]
 							and ProjectileSurface.can_place_entity({
 									name = "ironclad",
-									position = FlyingItem.target,
+									position = thrownItem.target,
 								})
 								== true
 						then
 							ProjectileSurface.create_entity({
-								name = FlyingItem.item,
-								position = FlyingItem.target,
+								name = thrownItem.item,
+								position = thrownItem.target,
 								force = "player",
 								raise_built = true,
 							})
-						elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-							CubethrownItem.panic(FlyingItem) -- Purposefully resort to Ultracube forced recovery
+						elseif storage.Ultracube and thrownItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
+							CubethrownItem.panic(thrownItem) -- Purposefully resort to Ultracube forced recovery
 						else
-							ProjectileSurface.pollute(FlyingItem.target, FlyingItem.amount * 0.5)
+							ProjectileSurface.pollute(thrownItem.target, thrownItem.amount * 0.5)
 						end
 
-						if FlyingItem.CloudStorage then
-							FlyingItem.CloudStorage.destroy()
+						if thrownItem.CloudStorage then
+							thrownItem.CloudStorage.destroy()
 						end
 					end
 				else
-					if FlyingItem.player == nil then
-						if FlyingItem.CloudStorage then
+					if thrownItem.player == nil then
+						if thrownItem.CloudStorage then
 							local spilt = ProjectileSurface.spill_item_stack({
 								position = ProjectileSurface.find_non_colliding_position(
 									"item-on-ground",
-									FlyingItem.target,
+									thrownItem.target,
 									500,
 									0.1
 								),
-								stack = FlyingItem.CloudStorage[1],
+								stack = thrownItem.CloudStorage[1],
 							})
 							if settings.global["RTSpillSetting"].value == "Spill and Mark" then
 								for every, thing in pairs(spilt) do
 									thing.order_deconstruction("player")
 								end
 							end
-							FlyingItem.CloudStorage.destroy()
-						elseif storage.Ultracube and FlyingItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
-							CubethrownItem.release_and_spill(FlyingItem)
+							thrownItem.CloudStorage.destroy()
+						elseif storage.Ultracube and thrownItem.cube_token_id then -- Ultracube is active, and the flying item has an associated ownership token
+							CubethrownItem.release_and_spill(thrownItem)
 						else
 							local spilt = ProjectileSurface.spill_item_stack({
 								position = ProjectileSurface.find_non_colliding_position(
 									"item-on-ground",
-									FlyingItem.target,
+									thrownItem.target,
 									500,
 									0.1
 								),
 								stack = {
-									name = FlyingItem.item,
-									count = FlyingItem.amount,
-									quality = FlyingItem.quality,
+									name = thrownItem.item,
+									count = thrownItem.amount,
+									quality = thrownItem.quality,
 								},
 							})
 							if settings.global["RTSpillSetting"].value == "Spill and Mark" then
@@ -708,43 +710,43 @@ local function on_tick(event)
 
 				-- tracer
 			elseif
-				FlyingItem.tracing ~= nil and storage.CatapultList[FlyingItem.tracing]
+				thrownItem.tracing ~= nil and storage.CatapultList[thrownItem.tracing]
 			then
-				--game.print(FlyingItem.tracing)
-				storage.CatapultList[FlyingItem.tracing].ImAlreadyTracer = "traced"
-				storage.CatapultList[FlyingItem.tracing].targets[FlyingItem.item] =
+				--game.print(thrownItem.tracing)
+				storage.CatapultList[thrownItem.tracing].ImAlreadyTracer = "traced"
+				storage.CatapultList[thrownItem.tracing].targets[thrownItem.item] =
 					"nothing"
 			end
 
 			if clear == true then
 				if
-					FlyingItem.tracing == nil
-					and FlyingItem.destination ~= nil
-					and storage.OnTheWay[FlyingItem.destination]
+					thrownItem.tracing == nil
+					and thrownItem.destination ~= nil
+					and storage.OnTheWay[thrownItem.destination]
 				then
-					storage.OnTheWay[FlyingItem.destination][FlyingItem.item] = storage.OnTheWay[FlyingItem.destination][FlyingItem.item]
-						- FlyingItem.amount
+					storage.OnTheWay[thrownItem.destination][thrownItem.item] = storage.OnTheWay[thrownItem.destination][thrownItem.item]
+						- thrownItem.amount
 				end
-				if FlyingItem.player then
-					storage.AllPlayers[FlyingItem.player.index].state = "default"
-					FlyingItem.player.character_running_speed_modifier = FlyingItem.IAmSpeed
-					FlyingItem.player.character.walking_state =
-						{ walking = false, direction = FlyingItem.player.character.direction }
+				if thrownItem.player then
+					storage.AllPlayers[thrownItem.player.index].state = "default"
+					thrownItem.player.character_running_speed_modifier = thrownItem.IAmSpeed
+					thrownItem.player.character.walking_state =
+						{ walking = false, direction = thrownItem.player.character.direction }
 				end
-				if FlyingItem.sprite then -- from impact unloader
-					FlyingItem.sprite.destroy()
+				if thrownItem.sprite then -- from impact unloader
+					thrownItem.sprite.destroy()
 				end
-				if FlyingItem.shadow then -- from impact unloader
-					FlyingItem.shadow.destroy()
+				if thrownItem.shadow then -- from impact unloader
+					thrownItem.shadow.destroy()
 				end
 				storage.thrownItem[each] = nil
 			end
-		elseif event.tick == FlyingItem.LandTick and FlyingItem.space == true then
-			if FlyingItem.sprite then -- from impact unloader/space throw
-				FlyingItem.sprite.destroy()
+		elseif event.tick == thrownItem.LandTick and thrownItem.space == true then
+			if thrownItem.sprite then -- from impact unloader/space throw
+				thrownItem.sprite.destroy()
 			end
-			if FlyingItem.shadow then -- from impact unloader/space throw
-				FlyingItem.shadow.destroy()
+			if thrownItem.shadow then -- from impact unloader/space throw
+				thrownItem.shadow.destroy()
 			end
 			storage.thrownItem[each] = nil
 		end
@@ -752,11 +754,11 @@ local function on_tick(event)
 		-- Ultracube non-sprite item position updating. Only done for items that require hinting as those are the ones the cube camera follows
 		if
 			storage.Ultracube
-			and FlyingItem.sprite == nil
-			and FlyingItem.cube_should_hint
-			and event.tick < FlyingItem.LandTick
+			and thrownItem.sprite == nil
+			and thrownItem.cube_should_hint
+			and event.tick < thrownItem.LandTick
 		then
-			CubethrownItem.item_with_stream_update(FlyingItem)
+			CubethrownItem.item_with_stream_update(thrownItem)
 		end
 	end
 end

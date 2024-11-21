@@ -23,13 +23,10 @@ magnetRamps.setRange = function(ramp, range, player, message)
 		end
 	else
 		ramp.range = range + 3
-		ramp.entity.get_or_create_control_behavior().get_section(1).set_slot(
-			1,
-			{
-				value = { type = "virtual", name = "signal-R", quality = "normal" },
-				min = ramp.range,
-			}
-		)
+		ramp.entity.get_or_create_control_behavior().get_section(1).set_slot(1, {
+			value = { type = "virtual", name = "signal-R", quality = "normal" },
+			min = ramp.range,
+		})
 	end
 
 	if range ~= nil then

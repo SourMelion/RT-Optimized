@@ -1,4 +1,5 @@
 --TO_DO
+--optomize varius math operations --OPTOMIZE-math-1
 
 --REQUIRE
 
@@ -427,9 +428,7 @@ script.on_nth_tick(3, function(event)
 										target = catapult.held_stack_position,
 										surface = catapult.surface,
 									})
-								storage.FlyingItems[storage.FlightNumber].spin = 1
-								--storage.FlyingItems[storage.FlightNumber].spin = math.random(-10, 10)
-								--	* 0.01
+								storage.FlyingItems[storage.FlightNumber].spin = AirTime
 							end
 							if catapult.held_stack.item_number ~= nil then
 								local CloudStorage = game.create_inventory(1)
@@ -633,7 +632,7 @@ script.on_event(
 						- FlyingItem.amount
 				end
 				if FlyingItem.player then
-					SwapBackFromGhost(FlyingItem.player, FlyingItem)
+					addObjectColisionBack(FlyingItem.player, FlyingItem)
 				end
 				storage.FlyingItems[each] = nil
 			end
@@ -711,7 +710,7 @@ script.on_event(defines.events.on_pre_player_left_game, function(event)
 			if FlyingItem.shadow then
 				FlyingItem.shadow.destroy()
 			end
-			SwapBackFromGhost(player, FlyingItem)
+			addObjectColisionBack(player, FlyingItem)
 			storage.FlyingItems[number] = nil
 		end
 	end
