@@ -1,9 +1,4 @@
-brrr = nil
-if (brrr == nil) then
-brrr = table.deepcopy(data.raw.radar["radar"])
-end
-
---local brrr = table.deepcopy(data.raw.radar["radar"])
+local brrr = table.deepcopy(data.raw.radar["radar"])
 brrr.name = "RTZipline"
 brrr.next_upgrade = nil
 brrr.not_upgradable = true
@@ -202,11 +197,8 @@ data:extend({
 		size = 70,
 	},
 })
-succ = nil
-if (succ == nil) then
-succ = table.deepcopy(data.raw.radar["RTZipline"])
-end
---local succ = table.deepcopy(data.raw.radar["RTZipline"])
+
+local succ = table.deepcopy(data.raw.radar["RTZipline"])
 succ.name = "RTZiplinePowerDrain"
 succ.icon = "__RTOptimized__/graphics/zipline/icon.png"
 succ.icon_size = 64
@@ -274,11 +266,7 @@ else
 	})
 end
 --============ trolley 2 ==================
-succ2 = nil
-if (succ2 == nil) then
-succ2 = table.deepcopy(data.raw.radar["RTZiplinePowerDrain"])
-end
---local succ2 = table.deepcopy(data.raw.radar["RTZiplinePowerDrain"])
+local succ2 = table.deepcopy(data.raw.radar["RTZiplinePowerDrain"])
 succ2.name = "RTZiplinePowerDrain2"
 succ2.icons = {
 	{
@@ -327,11 +315,7 @@ data:extend({
 	},
 })
 --============ trolley 3 ==================
-succ3 = nil
-if (succ3 == nil) then
-succ3 = table.deepcopy(data.raw.radar["RTZiplinePowerDrain"])
-end
---local succ3 = table.deepcopy(data.raw.radar["RTZiplinePowerDrain"])
+local succ3 = table.deepcopy(data.raw.radar["RTZiplinePowerDrain"])
 succ3.name = "RTZiplinePowerDrain3"
 succ3.icons = {
 	{
@@ -381,11 +365,7 @@ data:extend({
 	},
 })
 --============ trolley 4 ==================
-succ4 = nil
-if (succ4 == nil) then
-succ4 = table.deepcopy(data.raw.radar["RTZiplinePowerDrain"])
-end
---local succ4 = table.deepcopy(data.raw.radar["RTZiplinePowerDrain"])
+local succ4 = table.deepcopy(data.raw.radar["RTZiplinePowerDrain"])
 succ4.name = "RTZiplinePowerDrain4"
 succ4.icons = {
 	{
@@ -435,11 +415,7 @@ data:extend({
 	},
 })
 --============ trolley 5 ==================
-succ5 = nil
-if (succ5 == nil) then
-succ5 = table.deepcopy(data.raw.radar["RTZiplinePowerDrain"])
-end
---local succ5 = table.deepcopy(data.raw.radar["RTZiplinePowerDrain"])
+local succ5 = table.deepcopy(data.raw.radar["RTZiplinePowerDrain"])
 succ5.name = "RTZiplinePowerDrain5"
 succ5.icons = {
 	{
@@ -488,13 +464,9 @@ data:extend({
 		},
 	},
 })
-RTZiplineTerminal = nil
-if (RTZiplineTerminal == nil) then
-RTZiplineTerminal =
+
+local RTZiplineTerminal =
 	table.deepcopy(data.raw["electric-pole"]["medium-electric-pole"])
-end
---local RTZiplineTerminal =
---	table.deepcopy(data.raw["electric-pole"]["medium-electric-pole"])
 RTZiplineTerminal.icon = "__RTOptimized__/graphics/zipline/terminalicon.png"
 RTZiplineTerminal.icon_size = 64
 RTZiplineTerminal.icon_mipmaps = 1
@@ -541,13 +513,8 @@ RTZiplineTerminal.connection_points = {
 	},
 }
 RTZiplineTerminal.supply_area_distance = 0
-RTZiplineTerminalItem = nil
-if (RTZiplineTerminalItem == nil) then
-RTZiplineTerminalItem =
+local RTZiplineTerminalItem =
 	table.deepcopy(data.raw.item["medium-electric-pole"])
-end
---local RTZiplineTerminalItem =
---	table.deepcopy(data.raw.item["medium-electric-pole"])
 RTZiplineTerminalItem.name = "RTZiplineTerminalItem"
 RTZiplineTerminalItem.icon = "__RTOptimized__/graphics/zipline/terminalicon.png"
 RTZiplineTerminalItem.icon_size = 64

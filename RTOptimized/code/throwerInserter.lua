@@ -1,9 +1,5 @@
 function MakeThrowerVariant(inserter)
-	TheItem = nil
-	if (TheItem == nil) then
 	TheItem = table.deepcopy(data.raw.item[inserter.minable.result])
-end
-	--TheItem = table.deepcopy(data.raw.item[inserter.minable.result])
 	TheItem.name = "RTThrower-" .. TheItem.name .. "-Item"
 	TheItem.subgroup = "throwers"
 	TheItem.place_result = "RTThrower-" .. inserter.name
@@ -49,11 +45,8 @@ end
 	}
 	TheRecipe.localised_name =
 		{ "thrower-gen.name", { "entity-name." .. inserter.name } }
-	TheThrower = nil
-	if (TheThrower == nil) then
-		TheThrower = table.deepcopy(data.raw.inserter[inserter.name])
-	end
-	--TheThrower = table.deepcopy(data.raw.inserter[inserter.name])
+
+	TheThrower = table.deepcopy(data.raw.inserter[inserter.name])
 	TheThrower.name = "RTThrower-" .. inserter.name
 	TheThrower.minable = { mining_time = 0.1, result = TheItem.name }
 	--TheThrower.localised_name ="Thrower "..inserter.name

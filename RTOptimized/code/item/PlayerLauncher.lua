@@ -1,9 +1,5 @@
 ------ the thrower entity ----------
-PikachuFace = nil
-if (datboi == nil) then
-PikachuFace = table.deepcopy(data.raw.inserter["inserter"])
-end
---local PikachuFace = table.deepcopy(data.raw.inserter["inserter"])
+local PikachuFace = table.deepcopy(data.raw.inserter["inserter"])
 PikachuFace.name = "PlayerLauncher"
 PikachuFace.icon = "__RTOptimized__/graphics/PlayerLauncher/icon.png"
 PikachuFace.icon_size = 32

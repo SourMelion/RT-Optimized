@@ -1,9 +1,4 @@
-
-TheItem = nil
-if (TheItem == nil) then
-TheItem = table.deepcopy(data.raw.item.inserter)
-end
---local TheItem = table.deepcopy(data.raw.item.inserter)
+local TheItem = table.deepcopy(data.raw.item.inserter)
 TheItem.icon = "__RTOptimized__/graphics/primerthrowericon.png"
 TheItem.name = "RTThrower-PrimerThrower-Item"
 TheItem.subgroup = "defensive-structure"
