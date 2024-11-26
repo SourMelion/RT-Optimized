@@ -1,11 +1,4 @@
 --TO_DO
---simplify bounce plates, make them have a 1 slot inventory, and simply treat the throwing same as
---	-> throwerinserters, handle directionality by a simple property stored on the bounce plate
---	-> litteraly bouncepad.throwDirection = "up"  otehr values, "same" "left" "right" "down"
---	-> probly make a configuration window like bobs and use that to configure distance and direction
---	-> just a simple check for wheter or not the item was thrown to it to determine wheter or not to
---	-> throw it, so it cant be used as a free energy thrower
---rename bouncePlate to bouncepad, its bouncepad ingame why shuld it be different in code
 
 --VARIABLES
 

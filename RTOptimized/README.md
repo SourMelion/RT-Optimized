@@ -90,7 +90,7 @@ See the FAQ for some specific details
 
 ## Possible Future Additions
 
-- School keeps me pretty busy these days and I already made all the dumb things I had in mind, so there's no plans atm to add new stuff, but feel free to leave a suggestion if you'd like, I'd love to hear them
+- Yeah we just optomizing so probly none, in fact we might remove stuff, probly not tho
 
 ## ~~Bugs~~ Special Features
 

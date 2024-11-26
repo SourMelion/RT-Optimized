@@ -1,3 +1,23 @@
+--TO_DO
+--simplify bounce plates, make them have a 1 slot inventory, and simply treat the throwing same as
+--	-> throwerinserters, handle directionality by a simple property stored on the bounce plate
+--	-> litteraly bouncepad.throwDirection = "up"  otehr values, "same" "left" "right" "down"
+--	-> probly make a configuration window like bobs and use that to configure distance and direction
+--	-> just a simple check for wheter or not the item was thrown to it to determine wheter or not to
+--	-> throw it, so it cant be used as a free energy thrower
+--rename bouncePlate to bouncepad, its bouncepad ingame why shuld it be different in code
+--	-> same kinda stuff needs to be done to eavrything to simplify localization
+--seperate out eavry seperate thing this code is mutch harder to work with with it all consolidated
+--	-> like this
+
+--VARIABLES
+
+--FUNCTIONS
+
+--EVENTS
+
+--RUNTIME
+
 if script.active_mods["Ultracube"] then
 	CubeFlyingItems = require("code.ultracube.cube_flying_items")
 end

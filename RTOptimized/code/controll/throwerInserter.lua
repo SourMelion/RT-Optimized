@@ -1,88 +1,4 @@
---TO_DO
---optomize varius math operations --OPTOMIZE-math-1
-
---REQUIRE
-
---FUNCTIONS
-
---EVENTS
-
---RUNTIME
-
-if script.active_mods["gvv"] then
-	require("__gvv__.gvv")()
-end
-if script.active_mods["Ultracube"] then
-	CubeFlyingItems = require("code.ultracube.cube_flying_items")
-end
-
--- Setup tables and stuff for new/existing saves ----
-script.on_init(require("code.event.init"))
-
--- game version changes, prototypes change, startup mod settings change, and any time mod versions change including adding or removing mods
-script.on_configuration_changed(require("code.event.config_changed"))
-
----- Add new players to the AllPlayers table ----
-script.on_event(
-	defines.events.on_player_created,
-	require("code.event.player_created")
-)
-
--- On Built/Copy/Stuff
-
----- adds new thrower inserters to the list of throwers to check.
----- Make player launchers (reskinned inserters) to be inoperable
----- and inactive ----
-script.on_event({
-	defines.events.on_built_entity, --| built by hand ----
-	defines.events.on_robot_built_entity, --| built by robot ----
-	defines.events.script_raised_built, --| built by script ----
-	defines.events.on_entity_cloned, -- | cloned by script ----
-	defines.events.script_raised_revive, -- | ghost revived by script
-}, require("code.event.entity_built"))
-
--- On Rotate
-script.on_event(
-	defines.events.on_player_rotated_entity,
-	require("code.event.rotate")
-)
-
--- Thrower Range blueprint auto build cancel
-script.on_event(
-	defines.events.on_player_cursor_stack_changed, -- only has .player_index
-	function(event)
-		if
-			storage.AllPlayers[event.player_index].RangeAdjusting == true
-			and game.players[event.player_index].is_cursor_empty() == true
-		then
-			storage.AllPlayers[event.player_index].RangeAdjusting = false
-			storage.AllPlayers[event.player_index].RangeAdjustingDirection = nil
-			storage.AllPlayers[event.player_index].RangeAdjustingRange = nil
-		end
-	end
-)
-
--- Clear invalid things
-script.on_nth_tick(300, function(event)
-	for unitID, ItsStuff in pairs(storage.BouncePadList) do
-		if ItsStuff.TheEntity and ItsStuff.TheEntity.valid then
-			-- it's good
-		else
-			storage.BouncePadList[unitID] = nil
-		end
-	end
-
-	for unitID, ItsStuff in pairs(storage.MagnetRamps) do
-		if ItsStuff.entity and ItsStuff.entity.valid then
-			-- it's good
-		else
-			storage.MagnetRamps[unitID] = nil
-		end
-	end
-end)
-
 -- Thrower Check
---require("code.controll.throwerInserter")
 ---- checks if thrower inserters have something in their hands and it's in the throwing position, then creates the approppriate projectile ----
 script.on_nth_tick(3, function(event)
 	for catapultID, properties in pairs(storage.CatapultList) do
@@ -236,7 +152,7 @@ script.on_nth_tick(3, function(event)
 								properties.ImAlreadyTracer = "tracing"
 								-- set tracer "projectile"
 								local AirTime = 1
-								storage.FlyingItems[storage.FlightNumber] = {
+								storage.thrownItem[storage.FlightNumber] = {
 									item = HeldItem, --not like it matters
 									amount = 0, --not like it matters
 									target = {
@@ -361,7 +277,7 @@ script.on_nth_tick(3, function(event)
 									properties.targets[HeldItem] = nil
 								end
 							end
-							storage.FlyingItems[storage.FlightNumber] = {
+							storage.thrownItem[storage.FlightNumber] = {
 								item = HeldItem,
 								amount = catapult.held_stack.count,
 								quality = catapult.held_stack.quality.name,
@@ -418,10 +334,10 @@ script.on_nth_tick(3, function(event)
 									}
 								end
 								path.duration = AirTime
-								storage.FlyingItems[storage.FlightNumber].path = path
-								storage.FlyingItems[storage.FlightNumber].space = true
-								storage.FlyingItems[storage.FlightNumber].LandTick = game.tick + AirTime
-								storage.FlyingItems[storage.FlightNumber].sprite =
+								storage.thrownItem[storage.FlightNumber].path = path
+								storage.thrownItem[storage.FlightNumber].space = true
+								storage.thrownItem[storage.FlightNumber].LandTick = game.tick + AirTime
+								storage.thrownItem[storage.FlightNumber].sprite =
 									rendering.draw_sprite({
 										sprite = "item/" .. HeldItem,
 										x_scale = 0.5,
@@ -429,12 +345,12 @@ script.on_nth_tick(3, function(event)
 										target = catapult.held_stack_position,
 										surface = catapult.surface,
 									})
-								storage.FlyingItems[storage.FlightNumber].spin = AirTime
+								storage.thrownItem[storage.FlightNumber].spin = AirTime
 							end
 							if catapult.held_stack.item_number ~= nil then
 								local CloudStorage = game.create_inventory(1)
 								CloudStorage.insert(catapult.held_stack)
-								storage.FlyingItems[storage.FlightNumber].CloudStorage = CloudStorage
+								storage.thrownItem[storage.FlightNumber].CloudStorage = CloudStorage
 							end
 
 							-- Ultracube irreplaceables detection & handling
@@ -442,9 +358,9 @@ script.on_nth_tick(3, function(event)
 								storage.Ultracube
 								and storage.Ultracube.prototypes.irreplaceable[HeldItem]
 							then -- Ultracube mod is active, and the held item is an irreplaceable
-								-- Sets cube_token_id and cube_should_hint for the new FlyingItems entry
-								CubeFlyingItems.create_token_for(
-									storage.FlyingItems[storage.FlightNumber]
+								-- Sets cube_token_id and cube_should_hint for the new thrownItem entry
+								CubethrownItem.create_token_for(
+									storage.thrownItem[storage.FlightNumber]
 								)
 							end
 
@@ -493,315 +409,3 @@ script.on_nth_tick(3, function(event)
 		end
 	end
 end)
--- Projectile Lands
--- When a projectile lands and its effect_id is triggered, what to do ----
-script.on_event(
-	defines.events.on_script_trigger_effect,
-	require("code.event.effect_triggered")
-)
-
--- Animating/On Tick
-script.on_nth_tick(1, require("code.event.on_tick"))
-
--- On Damaged
-script.on_event(
-	defines.events.on_entity_damaged,
-	require("code.event.entity_damaged")
-)
-
--- On Interact
-script.on_event("RTInteract", require("code.event.interact"))
-
--- On Click
-script.on_event("RTClick", require("code.event.click"))
-
-script.on_event(
-	defines.events.on_object_destroyed,
-	require("code.event.entity_destroyed")
-)
-
-script.on_event(
-	defines.events.on_player_changed_surface,
-	-- .player_index :: uint: The player who changed surfaces
-	-- .surface_index :: uint: The surface index the player was on
-	function(event)
-		local player = game.players[event.player_index]
-		local PlayerProperties = storage.AllPlayers[event.player_index]
-		if
-			PlayerProperties
-			and PlayerProperties.state == "zipline"
-			and player.surface.name ~= PlayerProperties.zipline.StartingSurface.name
-		then
-			player.teleport(player.position, game.get_surface(event.surface_index))
-		end
-	end
-)
-
-script.on_event(
-	defines.events.on_runtime_mod_setting_changed,
-	-- player_index :: uint (optional): The player who changed the setting or nil if changed by script.
-	-- setting :: string: The setting name that changed.
-	-- setting_type :: string: The setting type: "runtime-per-user", or "runtime-global".
-	function(event)
-		if
-			event.setting == "RTOverflowComp"
-			and settings.global["RTOverflowComp"].value == false
-		then
-			storage.OnTheWay = {}
-		end
-	end
-)
-
-script.on_event(defines.events.on_gui_closed, function(event)
-	local player = game.players[event.player_index]
-	if
-		event.entity
-		and event.entity.name == "DirectorBouncePlate"
-		and storage.ThrowerPaths[script.register_on_object_destroyed(event.entity)]
-			~= nil
-	then
-		for ThrowerUN, TrackedItems in
-			pairs(
-				storage.ThrowerPaths[script.register_on_object_destroyed(event.entity)]
-			)
-		do
-			if storage.CatapultList[ThrowerUN] then
-				for item, asthma in pairs(TrackedItems) do
-					storage.CatapultList[ThrowerUN].targets[item] = nil
-				end
-			end
-		end
-		storage.ThrowerPaths[script.register_on_object_destroyed(event.entity)] = {}
-	end
-	if player.gui.screen.RTZiplineTerminalGUI then
-		player.gui.screen.RTZiplineTerminalGUI.destroy()
-	end
-end)
-
--- a bunch of functions used in various other places
-require("code.MiscFunctions")
-require("code.GUIs")
-
-script.on_event(defines.events.on_gui_click, require("code.event.ClickGUI"))
-
--- displaying things on hover
-script.on_event(
-	defines.events.on_selected_entity_changed,
-	--player_index	:: uint			The player whose selected entity changed.
-	--last_entity	:: LuaEntity?	The last selected entity if it still exists and there was one.
-	function(event)
-		local player = game.players[event.player_index]
-		--hide the old one
-		if
-			event.last_entity
-			and storage.HoverGFX[script.register_on_object_destroyed(event.last_entity)]
-			and storage.HoverGFX[script.register_on_object_destroyed(event.last_entity)][event.player_index]
-		then
-			storage.HoverGFX[script.register_on_object_destroyed(event.last_entity)][event.player_index].visible =
-				false
-		end
-		-- show the new one
-		if
-			player.selected
-			and storage.HoverGFX[script.register_on_object_destroyed(player.selected)]
-			and storage.HoverGFX[script.register_on_object_destroyed(player.selected)][event.player_index]
-		then
-			storage.HoverGFX[script.register_on_object_destroyed(player.selected)][event.player_index].visible =
-				true
-		end
-	end
-)
-
-script.on_event(
-	defines.events.on_pre_surface_deleted,
-	--surface_index :: uint
-	--name :: defines.events	Identifier of the event
-	--tick :: uint				Tick the event was generated.
-	function(event)
-		for each, FlyingItem in pairs(storage.FlyingItems) do
-			if FlyingItem.surface.index == event.surface_index then
-				if FlyingItem.sprite then
-					FlyingItem.sprite.destroy()
-				end
-				if FlyingItem.shadow then
-					FlyingItem.shadow.destroy()
-				end
-				if
-					FlyingItem.destination ~= nil and storage.OnTheWay[FlyingItem.destination]
-				then
-					storage.OnTheWay[FlyingItem.destination][FlyingItem.item] = storage.OnTheWay[FlyingItem.destination][FlyingItem.item]
-						- FlyingItem.amount
-				end
-				if FlyingItem.player then
-					addObjectColisionBack(FlyingItem.player, FlyingItem)
-				end
-				storage.FlyingItems[each] = nil
-			end
-		end
-	end
-)
-
-script.on_event("DebugAdvanceActionProcess", function(event)
-	local player = game.players[event.player_index]
-	if player.cursor_stack.valid_for_read == true then
-		local item = player.cursor_stack.name
-		if prototypes.entity["RTItemProjectile-" .. item .. 25] then
-			player.surface.create_entity({
-				name = "RTItemProjectile-" .. item .. 25,
-				position = player.position,
-				source_position = player.position,
-				target_position = event.cursor_position,
-			})
-		else
-			player.surface.create_entity({
-				name = "RTTestProjectile" .. 25,
-				position = player.position,
-				source_position = player.position,
-				target_position = event.cursor_position,
-			})
-		end
-	else
-		rendering.draw_animation({
-			animation = "RTHoojinTime",
-			x_scale = 0.5,
-			y_scale = 0.5,
-			target = player.character,
-			surface = player.surface,
-			time_to_live = 120,
-			animation_speed = 0.5,
-		})
-	end
-end)
-
-script.on_event(
-	defines.events.on_research_finished,
-	--research	:: LuaTechnology		The researched technology
-	--by_script	:: boolean				If the technology was researched by script.
-	--name		:: defines.events		Identifier of the event
-	--tick		:: uint					Tick the event was generated.
-	function(event)
-		if event.research.name == "RTFocusedFlinging" then
-			for each, properties in pairs(storage.CatapultList) do
-				if
-					string.find(properties.entity.name, "RTThrower-")
-					and properties.entity.name ~= "RTThrower-PrimerThrower"
-				then
-					properties.RangeAdjustable = true
-				end
-			end
-		end
-	end
-)
-
-script.on_event(defines.events.on_pre_player_left_game, function(event)
-	local player = game.players[event.player_index]
-	local PlayerProperties = storage.AllPlayers[event.player_index]
-	if PlayerProperties.state == "zipline" then
-		GetOffZipline(player, PlayerProperties)
-	elseif PlayerProperties.state == "jumping" then
-		if
-			PlayerProperties.PlayerLauncher.tracker
-			and storage.FlyingItems[PlayerProperties.PlayerLauncher.tracker] ~= nil
-		then
-			local number = PlayerProperties.PlayerLauncher.tracker
-			local FlyingItem = storage.FlyingItems[number]
-			if FlyingItem.sprite then
-				FlyingItem.sprite.destroy()
-			end
-			if FlyingItem.shadow then
-				FlyingItem.shadow.destroy()
-			end
-			addObjectColisionBack(player, FlyingItem)
-			storage.FlyingItems[number] = nil
-		end
-	end
-end)
-
-script.on_event(defines.events.on_gui_opened, function(event)
-	local player = game.players[event.player_index]
-	local selected = player.selected
-	if selected and selected.valid and event.gui_type == 1 then
-		if selected.name == "RTZiplineTerminal" then
-			if
-				storage.AllPlayers[event.player_index].state == "default"
-				and player.character
-				and (not string.find(player.character.name, "-jetpack"))
-				and player.is_cursor_empty() == true
-			then
-				if
-					player.character.get_inventory(defines.inventory.character_guns)[player.character.selected_gun_index].valid_for_read
-					and string.find(
-						player.character.get_inventory(defines.inventory.character_guns)[player.character.selected_gun_index].name,
-						"ZiplineItem"
-					)
-					and player.character.get_inventory(defines.inventory.character_ammo)[player.character.selected_gun_index].valid_for_read
-					and player.character.get_inventory(defines.inventory.character_ammo)[player.character.selected_gun_index].name
-						== "RTProgrammableZiplineControlsItem"
-				then
-					player.opened = nil
-					if DistanceBetween(player.character.position, selected.position) <= 7 then
-						ShowZiplineTerminalGUI(player, selected)
-					else
-						player.print({ "zipline-stuff.range" })
-					end
-				else
-					player.print({ "zipline-stuff.terminalReqs" })
-				end
-			end
-		elseif
-			selected.name == "RTTrainRamp"
-			or selected.name == "RTTrainRampNoSkip"
-			or selected.name == "RTMagnetTrainRamp"
-			or selected.name == "RTMagnetTrainRampNoSkip"
-			or selected.name == "RTMagnetRampDrain"
-		then
-			player.opened = nil
-		elseif selected.name == "DirectorBouncePlate" then
-			player.opened = nil
-			ShowDirectorGUI(player, selected)
-		end
-	end
-end)
-
-script.on_event(defines.events.on_gui_closed, function(event)
-	local player = game.players[event.player_index]
-	if player.gui.screen.RTZiplineTerminalGUI then
-		player.gui.screen.RTZiplineTerminalGUI.destroy()
-	end
-	if player.gui.screen.RTDirectorPadGUI then
-		player.gui.screen.RTDirectorPadGUI.destroy()
-	end
-end)
-
-script.on_event(defines.events.on_gui_elem_changed, function(event)
-	local element = event.element
-	if
-		element.parent
-		and element.parent.parent
-		and element.parent.parent.name == "RTDirectorPadGUI"
-	then
-		local director =
-			storage.BouncePadList[element.parent.parent.tags.ID].TheEntity
-		local section = element.tags.section
-		local slot = element.tags.slot
-		if element.elem_value then
-			director
-				.get_or_create_control_behavior()
-				.get_section(section)
-				.set_slot(slot, { value = { name = element.elem_value } })
-		else
-			director
-				.get_or_create_control_behavior()
-				.get_section(section)
-				.clear_slot(slot)
-		end
-	end
-end)
-
---factorissimo
-ElectricPoleBlackList = {
-	PoleName = "windows",
-	["factory-power-connection"] = true,
-	["factory-power-pole"] = true,
-	["factory-overflow-pole"] = true,
-}
